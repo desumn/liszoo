@@ -13,7 +13,7 @@ let rec free_vars = function
   | Add (l, r) | Sub (l, r) | Mul (l, r) ->
       Common.StringSet.union (free_vars l) (free_vars r)
 
-let rec subst var term subst_term =
+let rec subst var subst_term term =
   match term with
   | Var target when var = target -> subst_term
   | Var target -> Var target
