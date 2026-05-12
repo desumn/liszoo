@@ -11,7 +11,7 @@
 
 (maintainers "desumn <desumn@posteo.net>")
 
-(license BSD-3)
+(license BSD-3-Clause)
 
 (package
  (name liszoo)
@@ -19,7 +19,8 @@
  (description
   "A zoo of static analysis on a small language, mostly as a personal learning project.")
  (depends
-  ocaml
+  (ocaml
+   (>= 5.4.1))
   (alcotest :with-test)
   menhir
   menhirLib)

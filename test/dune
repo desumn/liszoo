@@ -1,3 +1,2 @@
 (test
- (name test_liszoo)
- (libraries liszoo))
+ (name test_liszoo))

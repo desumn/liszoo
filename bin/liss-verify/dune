@@ -1,0 +1,3 @@
+(executable
+ (public_name liss-verify)
+ (name main))

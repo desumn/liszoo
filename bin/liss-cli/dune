@@ -1,4 +1,0 @@
-(executable
- (public_name liszoo)
- (name main)
- (libraries liszoo))
