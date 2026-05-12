@@ -1,3 +1,6 @@
+module Term = Term
+module Atom = Atom
+
 type t =
   | Top | Bot
   | Atom of Atom.t
@@ -32,15 +35,10 @@ let imp_level = 1
 let or_level = 2
 let and_level = 3
 let not_level = 4
-let atom_level = 5
-let top_level = 5
-let bot_level = 5
 
-let paren_if cond ppf do_ =
-  if cond then (Fmt.pf ppf "("; do_ (); Fmt.pf ppf ")")
-  else do_ ()
 
 let rec pp_at level ppf formula =
+  let open Common.Pretty in
   match formula with
   | Top -> Fmt.string ppf "true"
   | Bot -> Fmt.string ppf "false"

@@ -1,3 +1,4 @@
 (library
  (name common)
- (public_name liszoo.common))
+ (public_name liszoo.common)
+ (libraries fmt))

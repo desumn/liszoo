@@ -29,11 +29,8 @@ let sub_level = 1
 let mul_level = 2
 let neg_level = 3
 
-let paren_if cond ppf do_ =
-  if cond then (Fmt.pf ppf "("; do_ (); Fmt.pf ppf ")")
-  else do_ ()
-
 let rec pp_at level ppf term = 
+  let open Common.Pretty in
   match term with
   | Var var -> Fmt.string ppf var
   | Const const -> Fmt.int ppf const

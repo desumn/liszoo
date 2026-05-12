@@ -1,3 +1,7 @@
+module Term = Term
+module Atom = Atom
+
+
 type t =
   | Top | Bot
   | Atom of Atom.t
