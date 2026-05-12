@@ -13,15 +13,15 @@ let rec free_vars = function
   | Add (l, r) | Sub (l, r) | Mul (l, r) ->
       Common.StringSet.union (free_vars l) (free_vars r)
 
-let rec subst var subst_term term =
-  match term with
-  | Var target when var = target -> subst_term
+let rec subst var ~by ~on =
+  match on with
+  | Var target when var = target -> by
   | Var target -> Var target
   | Const c -> Const c
-  | Neg t -> Neg (subst var t subst_term)
-  | Add (l, r) -> Add (subst var l subst_term, subst var r subst_term)
-  | Sub (l, r) -> Sub (subst var l subst_term, subst var r subst_term)
-  | Mul (l, r) -> Mul (subst var l subst_term, subst var r subst_term)
+  | Neg t -> Neg (subst var ~on:t ~by)
+  | Add (l, r) -> Add (subst var ~on:l ~by, subst var ~on:r ~by)
+  | Sub (l, r) -> Sub (subst var ~on:l ~by, subst var ~on:r ~by)
+  | Mul (l, r) -> Mul (subst var ~on:l ~by, subst var ~on:r ~by)
 
 let add_level = 1
 let sub_level = 1
