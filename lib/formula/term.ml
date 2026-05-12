@@ -26,7 +26,6 @@ let rec subst var ~term ~subst_term =
   | Sub (l, r) -> Sub(subst var ~term:l ~subst_term, subst var ~term:r ~subst_term)
   | Mul (l, r) -> Mul(subst var ~term:l ~subst_term, subst var ~term:r ~subst_term)
 
-
 let add_level = 1
 let sub_level = 1
 let mul_level = 2
