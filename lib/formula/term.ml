@@ -1,5 +1,3 @@
-open StdLabels
-
 type t =
   | Var of string
   | Const of int
@@ -16,15 +14,15 @@ let rec free_vars = function
   | Sub (l, r)
   | Mul (l, r) -> Common.StringSet.union (free_vars l) (free_vars r)
 
-let rec subst var ~term ~subst_term =
+let rec subst var term subst_term =
   match term with
   | Var target when var = target -> subst_term
   | Var target -> Var target
   | Const c -> Const c
-  | Neg term -> subst var ~term ~subst_term
-  | Add (l, r) -> Add(subst var ~term:l ~subst_term, subst var ~term:r ~subst_term)
-  | Sub (l, r) -> Sub(subst var ~term:l ~subst_term, subst var ~term:r ~subst_term)
-  | Mul (l, r) -> Mul(subst var ~term:l ~subst_term, subst var ~term:r ~subst_term)
+  | Neg t -> Neg (subst var t subst_term)
+  | Add (l, r) -> Add(subst var l subst_term, subst var r subst_term)
+  | Sub (l, r) -> Sub(subst var l subst_term, subst var r subst_term)
+  | Mul (l, r) -> Mul(subst var l subst_term, subst var r subst_term)
 
 let add_level = 1
 let sub_level = 1

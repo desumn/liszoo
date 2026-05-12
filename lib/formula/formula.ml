@@ -21,7 +21,7 @@ let rec subst name term formula =
   match formula with
   | Top | Bot -> formula
   | Atom atom -> Atom (Atom.subst name term atom)
-  | Not fomula -> Not (subst name term formula)
+  | Not f -> Not (subst name term f)
   | And (l, r) -> And (subst name term l, subst name term r)
   | Or (l, r) -> Or (subst name term l, subst name term r)
   | Imp (l, r)-> Imp (subst name term l, subst name term r)
@@ -46,21 +46,21 @@ let rec pp_at level ppf formula =
   | Bot -> Fmt.string ppf "false"
   | Atom atom -> Atom.pp ppf atom
   | Not ((Atom _) as sub) ->
-    Fmt.pf ppf "~(%a)" (pp_at not_level) sub
+    Fmt.pf ppf "~(%a)" (pp_at (not_level + 1)) sub
   | Not sub ->
-    Fmt.pf ppf "~%a" (pp_at not_level) sub
+    Fmt.pf ppf "~%a" (pp_at (not_level + 1)) sub
   | And (l, r) ->
     paren_if (level > and_level) ppf @@ fun () ->
-      Fmt.pf ppf "@[<2>%a /\\ %a@]" (pp_at and_level) l (pp_at and_level) r
+      Fmt.pf ppf "@[<2>%a /\\ %a@]" (pp_at and_level) l (pp_at (and_level + 1)) r
   | Or (l, r) ->
     paren_if (level > or_level) ppf @@ fun () ->
-      Fmt.pf ppf "@[<2>%a \\/ %a@]" (pp_at or_level) l (pp_at or_level) r
+      Fmt.pf ppf "@[<2>%a \\/ %a@]" (pp_at or_level) l (pp_at (or_level + 1)) r
   | Imp (l, r) ->
     paren_if (level > imp_level) ppf @@ fun () ->
       Fmt.pf ppf "@[<2>%a => %a@]" (pp_at (imp_level + 1)) l (pp_at imp_level) r
   | Iff (l, r) ->
     paren_if (level > iff_level) ppf @@ fun () ->
-      Fmt.pf ppf "@[<2>%a <=> %a@]" (pp_at iff_level) l (pp_at iff_level) r
+      Fmt.pf ppf "@[<2>%a <=> %a@]" (pp_at iff_level) l (pp_at (iff_level + 1)) r
 
 
 

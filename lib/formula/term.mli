@@ -8,7 +8,7 @@ type t =
 
 val free_vars : t -> Common.StringSet.t
 
-val subst : string -> term:t -> subst_term:t -> t
+val subst : string -> t -> t -> t
 
 val equal : t -> t -> bool
 val compare : t -> t -> int

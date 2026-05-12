@@ -17,12 +17,12 @@ let free_vars atom =
 
 let subst name subst_term atom =
   match atom with
-  | Eq (l, r) -> Eq (Term.subst name ~term:l ~subst_term, Term.subst name ~term:r ~subst_term)
-  | Neq (l, r) -> Neq (Term.subst name ~term:l ~subst_term, Term.subst name ~term:r ~subst_term)
-  | Lt (l, r) -> Lt (Term.subst name ~term:l ~subst_term, Term.subst name ~term:r ~subst_term)
-  | Le (l, r) -> Le (Term.subst name ~term:l ~subst_term, Term.subst name ~term:r ~subst_term)
-  | Gt (l, r) -> Gt (Term.subst name ~term:l ~subst_term, Term.subst name ~term:r ~subst_term)
-  | Ge (l, r) -> Ge (Term.subst name ~term:l ~subst_term, Term.subst name ~term:r ~subst_term)
+  | Eq (l, r) -> Eq (Term.subst name l subst_term, Term.subst name r subst_term)
+  | Neq (l, r) -> Neq (Term.subst name l subst_term, Term.subst name r subst_term)
+  | Lt (l, r) -> Lt (Term.subst name l subst_term, Term.subst name r subst_term)
+  | Le (l, r) -> Le (Term.subst name l subst_term, Term.subst name r subst_term)
+  | Gt (l, r) -> Gt (Term.subst name l subst_term, Term.subst name r subst_term)
+  | Ge (l, r) -> Ge (Term.subst name l subst_term, Term.subst name r subst_term)
 
 let pp ppf atom =
   match atom with
