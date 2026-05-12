@@ -1,0 +1,3 @@
+(library
+ (name smt)
+ (public_name liszoo.smt))

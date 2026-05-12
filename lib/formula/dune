@@ -1,0 +1,3 @@
+(library
+ (name formula)
+ (public_name liszoo.formula))

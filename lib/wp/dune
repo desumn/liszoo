@@ -1,0 +1,3 @@
+(library
+ (name wp)
+ (public_name liszoo.wp))
