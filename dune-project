@@ -22,6 +22,7 @@
   (ocaml
    (>= 5.4.1))
   (alcotest :with-test)
+  fmt
   menhir
   menhirLib)
  (tags ("static analysis")))

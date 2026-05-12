@@ -1,3 +1,4 @@
 (library
  (name formula)
- (public_name liszoo.formula))
+ (public_name liszoo.formula)
+ (libraries common fmt))
