@@ -7,11 +7,7 @@ type t =
   | Ge of Term.t * Term.t
 
 val free_vars : t -> Common.StringSet.t
-
 val subst : string -> Term.t -> t -> t
-
 val pp : t Fmt.t
-
 val equal : t -> t -> bool
-
 val compare : t -> t -> int
