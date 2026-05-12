@@ -13,13 +13,30 @@ let free_vars atom =
 
 let subst name subst_term atom =
   match atom with
-  | Eq (l, r) -> Eq (Term.subst name ~by:subst_term ~on:l, Term.subst name ~by:subst_term ~on:r)
+  | Eq (l, r) ->
+      Eq
+        ( Term.subst name ~by:subst_term ~on:l,
+          Term.subst name ~by:subst_term ~on:r )
   | Neq (l, r) ->
-      Neq (Term.subst name ~by:subst_term ~on:l, Term.subst name ~by:subst_term ~on:r)
-  | Lt (l, r) -> Lt (Term.subst name ~by:subst_term ~on:l, Term.subst name ~by:subst_term ~on:r)
-  | Le (l, r) -> Le (Term.subst name ~by:subst_term ~on:l, Term.subst name ~by:subst_term ~on:r)
-  | Gt (l, r) -> Gt (Term.subst name ~by:subst_term ~on:l, Term.subst name ~by:subst_term ~on:r)
-  | Ge (l, r) -> Ge (Term.subst name ~by:subst_term ~on:l, Term.subst name ~by:subst_term ~on:r)
+      Neq
+        ( Term.subst name ~by:subst_term ~on:l,
+          Term.subst name ~by:subst_term ~on:r )
+  | Lt (l, r) ->
+      Lt
+        ( Term.subst name ~by:subst_term ~on:l,
+          Term.subst name ~by:subst_term ~on:r )
+  | Le (l, r) ->
+      Le
+        ( Term.subst name ~by:subst_term ~on:l,
+          Term.subst name ~by:subst_term ~on:r )
+  | Gt (l, r) ->
+      Gt
+        ( Term.subst name ~by:subst_term ~on:l,
+          Term.subst name ~by:subst_term ~on:r )
+  | Ge (l, r) ->
+      Ge
+        ( Term.subst name ~by:subst_term ~on:l,
+          Term.subst name ~by:subst_term ~on:r )
 
 let pp ppf atom =
   match atom with
