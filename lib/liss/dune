@@ -1,3 +1,4 @@
 (library
  (name liss)
- (public_name liszoo.liss))
+ (public_name liszoo.liss)
+ (libraries common formula))
