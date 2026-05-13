@@ -1,3 +1,4 @@
 (library
  (name smt)
- (public_name liszoo.smt))
+ (public_name liszoo.smt)
+ (libraries common formula fmt bos re))
