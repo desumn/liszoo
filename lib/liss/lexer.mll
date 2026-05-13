@@ -59,9 +59,10 @@ rule token = parse
   | number as num {INT (transform_number num)}
   | ident as ident {IDENT ident}
   | eof {EOF}
+  | _ as c {raise (Lexing_error (String.make 1 c, Lexing.lexeme_start_p lexbuf))}
 and comment depth = parse
   | "(*" { comment (depth + 1) lexbuf}
   | "*)" { if depth = 0 then token lexbuf else comment (depth - 1) lexbuf }
   | '\n' { Lexing.new_line lexbuf; comment depth lexbuf }
-  | eof { raise (Lexing_error ("eof in comment", Lexing.lexeme_end_p lexbuf)) }
+  | eof { raise (Lexing_error ("eof in comment", Lexing.lexeme_start_p lexbuf)) }
   | _ { comment depth lexbuf }
