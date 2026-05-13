@@ -1,3 +1,4 @@
+open StdLabels
 open Liss
 
 let rec wp (cmd : Cmd.t) post =
@@ -38,3 +39,18 @@ let verify (prog : Program.t) =
       Formula.[ Imp (prog.pre, wp prog.body prog.post) ];
       vcs prog.body prog.post;
     ]
+
+let verify_and_check (prog : Program.t) =
+  let open Result.Syntax in
+  let vcs = verify prog in
+  vcs
+  |> List.map ~f:(Smt.Solver.check_alt_ergo)
+  |> List.fold_left ~init:(Ok Smt.Solver.Valid)
+     ~f:(fun final_result smt_result ->
+       let open Smt.Solver in
+       let* result = smt_result in
+       let+ final_result = final_result in
+       match final_result, result with
+       | Valid, Valid -> Valid
+       | _, _ -> Unknown `Unknown
+     )
