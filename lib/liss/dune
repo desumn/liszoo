@@ -1,4 +1,9 @@
 (library
  (name liss)
  (public_name liszoo.liss)
- (libraries common formula))
+ (libraries common formula menhirLib))
+
+(ocamllex lexer)
+
+(menhir
+ (modules parser))
