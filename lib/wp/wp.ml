@@ -40,7 +40,7 @@ let rec vcs (cmd : Cmd.t) post =
   | If (cond, then_, else_) ->
     let cond_form = Conv.to_formula cond in
     let vcs_then = List.map (vcs then_ post) ~f:(fun vc -> {vc with goal = Imp (cond_form, vc.goal)}) in
-    let vcs_else = List.map (vcs else_ post) ~f:(fun vc -> {vc with goal = Imp (cond_form, vc.goal)}) in
+    let vcs_else = List.map (vcs else_ post) ~f:(fun vc -> {vc with goal = Imp (Not cond_form, vc.goal)}) in
     List.concat [ vcs_then; vcs_else ]
   | While (cond, inv, body) ->
       let loc = body.loc in
