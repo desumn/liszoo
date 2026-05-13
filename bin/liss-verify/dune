@@ -1,3 +1,4 @@
 (executable
  (public_name liss-verify)
- (name main))
+ (name main)
+ (libraries liss wp formula smt fmt bos cmdliner fpath grace))

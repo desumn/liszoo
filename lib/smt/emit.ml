@@ -1,4 +1,3 @@
-
 let rec term ppf (in_term : Formula.Term.t) =
   match in_term with
   | Var x -> Fmt.string ppf x
@@ -18,7 +17,7 @@ let atom ppf (in_atom : Formula.Atom.t) =
   | Gt (t1, t2) -> Fmt.pf ppf "(> %a %a)" term t1 term t2
   | Ge (t1, t2) -> Fmt.pf ppf "(>= %a %a)" term t1 term t2
 
-let rec formula ppf (in_formula : Formula.t) = 
+let rec formula ppf (in_formula : Formula.t) =
   match in_formula with
   | Top -> Fmt.string ppf "true"
   | Bot -> Fmt.string ppf "false"
@@ -32,6 +31,8 @@ let rec formula ppf (in_formula : Formula.t) =
 let query ppf (in_query : Formula.t) =
   let vars = Formula.free_vars in_query in
   Fmt.string ppf "(set-logic QF_NIA)";
-  Common.StringSet.iter (fun var -> Fmt.pf ppf "(declare-const %s Int)" var) vars;
+  Common.StringSet.iter
+    (fun var -> Fmt.pf ppf "(declare-const %s Int)" var)
+    vars;
   Fmt.pf ppf "(assert (not %a))" formula in_query;
   Fmt.string ppf "(check-sat)\n"
