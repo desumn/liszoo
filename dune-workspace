@@ -1,0 +1,46 @@
+(lang dune 3.21)
+
+(env
+ (dev
+  (flags
+   (:standard
+    -w
+    +a-4-9-40-41-42-44-45-48-58-66-67-68-69-70
+    -alert
+    +all
+    -principal
+    -short-paths
+    -keep-locs
+    -strict-sequence
+    -strict-formats
+    -no-alias-deps
+
+    )))
+ (release
+  (flags
+   (:standard
+    -w
+    +a-4-9-40-41-42-44-45-48-58-66-67-68-69-70-74
+    -alert
+    +all
+    -principal
+    -short-paths
+    -warn-error
+    +a-3-26-27-32..39
+    -strict-sequence
+    -strict-formats)
+   ("ocamlopt_flags"
+    (:standard -O3 -unbox-closures))))
+ (ci
+  (flags
+   (:standard
+    -w
+    +a-4-9-40-41-42-44-45-48-58-66-67-68-69-70-74
+    -alert
+    +all
+    -principal
+    -short-paths
+    -warn-error
+    +a-3
+    -strict-sequence
+    -strict-formats))))

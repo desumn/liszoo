@@ -7,7 +7,7 @@ let rec to_term (expr : Expr.t) =
   | Sub (l, r) -> Formula.Term.Sub (to_term l, to_term r)
   | Mul (l, r) -> Formula.Term.Mul (to_term l, to_term r)
 
-let rec to_atom (atom : Bool_expr.atom) =
+let to_atom (atom : Bool_expr.atom) =
   match atom with
   | Eq (l, r) -> Formula.Atom.Eq (to_term l, to_term r)
   | Neq (l, r) -> Formula.Atom.Neq (to_term l, to_term r)

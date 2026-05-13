@@ -6,6 +6,13 @@
 
 (generate_opam_files true)
 
+(implicit_transitive_deps false)
+
+(formatting
+ (enabled_for ocaml dune))
+
+(cram enable)
+
 (source
  (github desumn/liszoo))
 

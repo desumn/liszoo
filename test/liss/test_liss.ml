@@ -8,18 +8,11 @@ let prog_t = Alcotest.testable Program.pp Program.equal
 let term_t = Alcotest.testable Formula.Term.pp Formula.Term.equal
 let atom_t = Alcotest.testable Formula.Atom.pp Formula.Atom.equal
 let form_t = Alcotest.testable Formula.pp Formula.equal
-
 let mk = Common.Located.dummy
 
 let with_loc line node =
   let p =
-    Lexing.
-      {
-        pos_fname = "test";
-        pos_lnum = line;
-        pos_bol = 0;
-        pos_cnum = line;
-      }
+    Lexing.{ pos_fname = "test"; pos_lnum = line; pos_bol = 0; pos_cnum = line }
   in
   Common.Located.make (p, p) node
 
@@ -73,9 +66,7 @@ let expr_pp_tests =
       expr_pp_case "pp add over mul"
         (Add (Mul (Var "a", Var "b"), Var "c"))
         "a * b + c";
-      expr_pp_case "pp neg over add"
-        (Neg (Add (Var "a", Var "b")))
-        "-(a + b)";
+      expr_pp_case "pp neg over add" (Neg (Add (Var "a", Var "b"))) "-(a + b)";
     ]
 
 let expr_equal_tests =
@@ -89,13 +80,9 @@ let expr_equal_tests =
             "different vars" false
             (equal (Var "x") (Var "y")));
       Alcotest.test_case "not equal different shape" `Quick (fun () ->
-          Alcotest.(check bool)
-            "var vs const" false
-            (equal (Var "x") (Const 0)));
+          Alcotest.(check bool) "var vs const" false (equal (Var "x") (Const 0)));
       Alcotest.test_case "compare same is zero" `Quick (fun () ->
-          Alcotest.(check int)
-            "compare same" 0
-            (compare (Var "x") (Var "x")));
+          Alcotest.(check int) "compare same" 0 (compare (Var "x") (Var "x")));
       Alcotest.test_case "compare different is nonzero" `Quick (fun () ->
           Alcotest.(check bool)
             "compare different" true
@@ -119,9 +106,7 @@ let bexpr_pp_case name b expected =
 let bexpr_atom_pp_case name a expected =
   Alcotest.test_case name `Quick @@ fun () ->
   Alcotest.(
-    check' string ~msg:name
-      ~actual:(Fmt.str "%a" Bool_expr.pp_atom a)
-      ~expected)
+    check' string ~msg:name ~actual:(Fmt.str "%a" Bool_expr.pp_atom a) ~expected)
 
 let bexpr_atom_pp_tests =
   Bool_expr.(
@@ -155,9 +140,8 @@ let bexpr_fv_tests =
         bexpr_fv_case "fv composite"
           (Or
              ( Not (Atom (Eq (Var "x", Var "y"))),
-               And
-                 ( Atom (Gt (Var "z", Const 0)),
-                   Atom (Lt (Var "x", Const 100)) ) ))
+               And (Atom (Gt (Var "z", Const 0)), Atom (Lt (Var "x", Const 100)))
+             ))
           [ "x"; "y"; "z" ];
       ])
 
@@ -210,8 +194,7 @@ let bexpr_equal_tests =
 
 let cmd_pp_case name c expected =
   Alcotest.test_case name `Quick @@ fun () ->
-  Alcotest.(
-    check' string ~msg:name ~actual:(Fmt.str "%a" Cmd.pp c) ~expected)
+  Alcotest.(check' string ~msg:name ~actual:(Fmt.str "%a" Cmd.pp c) ~expected)
 
 (* small DSL helpers to keep test cases readable *)
 let skip = mk Cmd.Skip
@@ -240,8 +223,7 @@ let cmd_pp_tests =
          (assign "x" (Expr.Const 0))
          (seq (assign "y" (Expr.Const 1)) (assign "z" (Expr.Const 2))))
       "x := 0;\ny := 1;\nz := 2";
-    cmd_pp_case "pp if"
-      (if_ x_eq_0 skip skip)
+    cmd_pp_case "pp if" (if_ x_eq_0 skip skip)
       "if x = 0 then\n  skip\nelse\n  skip\nend";
     cmd_pp_case "pp while"
       (while_ x_eq_0 Formula.Top skip)
@@ -259,8 +241,15 @@ let cmd_pp_tests =
       "while x = 0 invariant { true } do\n  x := x + 1;\n  y := y - 1\nend";
     cmd_pp_case "pp nested if"
       (if_ x_eq_0 (if_ Bool_expr.True skip skip) skip)
-      "if x = 0 then\n  if true then\n    skip\n  else\n    skip\n  \
-       end\nelse\n  skip\nend";
+      "if x = 0 then\n\
+      \  if true then\n\
+      \    skip\n\
+      \  else\n\
+      \    skip\n\
+      \  end\n\
+       else\n\
+      \  skip\n\
+       end";
     cmd_pp_case "pp seq with if"
       (seq (if_ x_eq_0 skip skip) (assign "x" (Expr.Const 1)))
       "if x = 0 then\n  skip\nelse\n  skip\nend;\nx := 1";
@@ -276,8 +265,7 @@ let cmd_equal_tests =
         let a =
           with_loc 1
             (Cmd.Seq
-               ( with_loc 2 (Cmd.Assign ("x", Expr.Const 0)),
-                 with_loc 3 Cmd.Skip ))
+               (with_loc 2 (Cmd.Assign ("x", Expr.Const 0)), with_loc 3 Cmd.Skip))
         in
         let b =
           with_loc 100
@@ -289,15 +277,11 @@ let cmd_equal_tests =
     Alcotest.test_case "not equal: assign different var" `Quick (fun () ->
         Alcotest.(check bool)
           "different var" false
-          (Cmd.equal
-             (assign "x" (Expr.Const 0))
-             (assign "y" (Expr.Const 0))));
+          (Cmd.equal (assign "x" (Expr.Const 0)) (assign "y" (Expr.Const 0))));
     Alcotest.test_case "not equal: assign different rhs" `Quick (fun () ->
         Alcotest.(check bool)
           "different rhs" false
-          (Cmd.equal
-             (assign "x" (Expr.Const 0))
-             (assign "x" (Expr.Const 1))));
+          (Cmd.equal (assign "x" (Expr.Const 0)) (assign "x" (Expr.Const 1))));
     Alcotest.test_case "not equal: different node" `Quick (fun () ->
         Alcotest.(check bool)
           "different node" false
@@ -326,8 +310,7 @@ let prog_pp_tests =
         let prog : Program.t =
           {
             pre = Formula.(Atom (Atom.Eq (Term.Var "n", Term.Const 0)));
-            body =
-              seq (assign "x" (Expr.Const 0)) (assign "y" (Expr.Const 1));
+            body = seq (assign "x" (Expr.Const 0)) (assign "y" (Expr.Const 1));
             post = Formula.(Atom (Atom.Eq (Term.Var "x", Term.Var "y")));
           }
         in
@@ -381,18 +364,10 @@ let prog_equal_tests =
         Alcotest.(check bool) "different pre" false (Program.equal p q));
     Alcotest.test_case "equal: ignores body locs" `Quick (fun () ->
         let p : Program.t =
-          {
-            pre = Formula.Top;
-            body = with_loc 1 Cmd.Skip;
-            post = Formula.Top;
-          }
+          { pre = Formula.Top; body = with_loc 1 Cmd.Skip; post = Formula.Top }
         in
         let q : Program.t =
-          {
-            pre = Formula.Top;
-            body = with_loc 99 Cmd.Skip;
-            post = Formula.Top;
-          }
+          { pre = Formula.Top; body = with_loc 99 Cmd.Skip; post = Formula.Top }
         in
         Alcotest.(
           check' prog_t ~msg:"equal despite different body loc" ~actual:p
@@ -417,8 +392,7 @@ let conv_to_term_tests =
   [
     conv_to_term_case "var" (Expr.Var "x") (Formula.Term.Var "x");
     conv_to_term_case "const" (Expr.Const 42) (Formula.Term.Const 42);
-    conv_to_term_case "neg"
-      (Expr.Neg (Expr.Var "x"))
+    conv_to_term_case "neg" (Expr.Neg (Expr.Var "x"))
       (Formula.Term.Neg (Formula.Term.Var "x"));
     conv_to_term_case "add"
       (Expr.Add (Expr.Var "x", Expr.Const 1))
@@ -438,17 +412,23 @@ let conv_to_atom_tests =
   Bool_expr.(
     Expr.
       [
-        conv_to_atom_case "eq" (Eq (Var "x", Const 0))
+        conv_to_atom_case "eq"
+          (Eq (Var "x", Const 0))
           Formula.(Atom.Eq (Term.Var "x", Term.Const 0));
-        conv_to_atom_case "neq" (Neq (Var "x", Const 0))
+        conv_to_atom_case "neq"
+          (Neq (Var "x", Const 0))
           Formula.(Atom.Neq (Term.Var "x", Term.Const 0));
-        conv_to_atom_case "lt" (Lt (Var "x", Var "y"))
+        conv_to_atom_case "lt"
+          (Lt (Var "x", Var "y"))
           Formula.(Atom.Lt (Term.Var "x", Term.Var "y"));
-        conv_to_atom_case "le" (Le (Const 1, Var "y"))
+        conv_to_atom_case "le"
+          (Le (Const 1, Var "y"))
           Formula.(Atom.Le (Term.Const 1, Term.Var "y"));
-        conv_to_atom_case "gt" (Gt (Var "x", Const 0))
+        conv_to_atom_case "gt"
+          (Gt (Var "x", Const 0))
           Formula.(Atom.Gt (Term.Var "x", Term.Const 0));
-        conv_to_atom_case "ge" (Ge (Var "x", Const 0))
+        conv_to_atom_case "ge"
+          (Ge (Var "x", Const 0))
           Formula.(Atom.Ge (Term.Var "x", Term.Const 0));
       ])
 
@@ -466,8 +446,7 @@ let conv_to_formula_tests =
         conv_to_formula_case "or" (Or (True, False)) Formula.(Or (Top, Bot));
         conv_to_formula_case "composite"
           (And
-             ( Atom (Eq (Var "x", Const 0)),
-               Not (Atom (Lt (Var "y", Const 10))) ))
+             (Atom (Eq (Var "x", Const 0)), Not (Atom (Lt (Var "y", Const 10)))))
           Formula.(
             And
               ( Atom Atom.(Eq (Term.Var "x", Term.Const 0)),
@@ -479,14 +458,10 @@ let conv_to_formula_tests =
 let located_tests =
   [
     Alcotest.test_case "make sets node" `Quick (fun () ->
-        let r =
-          Common.Located.make (Lexing.dummy_pos, Lexing.dummy_pos) 42
-        in
+        let r = Common.Located.make (Lexing.dummy_pos, Lexing.dummy_pos) 42 in
         Alcotest.(check int) "node" 42 r.node);
     Alcotest.test_case "map transforms node only" `Quick (fun () ->
-        let r =
-          Common.Located.make (Lexing.dummy_pos, Lexing.dummy_pos) 42
-        in
+        let r = Common.Located.make (Lexing.dummy_pos, Lexing.dummy_pos) 42 in
         let r' = Common.Located.map (fun x -> x + 1) r in
         Alcotest.(check int) "transformed node" 43 r'.node);
     Alcotest.test_case "dummy yields lexing dummy positions" `Quick (fun () ->
@@ -499,15 +474,12 @@ let located_tests =
 (* === Parser === *)
 
 let parse = Liss.parse_string
-
-let triv body : Program.t =
-  { pre = Formula.Top; body; post = Formula.Top }
+let triv body : Program.t = { pre = Formula.Top; body; post = Formula.Top }
 
 (* atom helpers : variable + constante entière *)
 let b_eq x n = Bool_expr.(Atom (Eq (Expr.Var x, Expr.Const n)))
-let b_lt x n = Bool_expr.(Atom (Lt (Expr.Var x, Expr.Const n)))
+let _b_lt x n = Bool_expr.(Atom (Lt (Expr.Var x, Expr.Const n)))
 let b_gt x n = Bool_expr.(Atom (Gt (Expr.Var x, Expr.Const n)))
-
 let f_eq x n = Formula.(Atom (Atom.Eq (Term.Var x, Term.Const n)))
 let f_ge x n = Formula.(Atom (Atom.Ge (Term.Var x, Term.Const n)))
 
@@ -518,17 +490,12 @@ let parse_case name source expected =
 (* Source → AST : un cas par constructeur *)
 let parser_basic_tests =
   [
-    parse_case "parse skip"
-      "pre { true } skip post { true }"
-      (triv skip);
-    parse_case "parse assign const"
-      "pre { true } x := 0 post { true }"
+    parse_case "parse skip" "pre { true } skip post { true }" (triv skip);
+    parse_case "parse assign const" "pre { true } x := 0 post { true }"
       (triv (assign "x" (Expr.Const 0)));
-    parse_case "parse assign var"
-      "pre { true } x := y post { true }"
+    parse_case "parse assign var" "pre { true } x := y post { true }"
       (triv (assign "x" (Expr.Var "y")));
-    parse_case "parse seq"
-      "pre { true } x := 0; y := 1 post { true }"
+    parse_case "parse seq" "pre { true } x := 0; y := 1 post { true }"
       (triv (seq (assign "x" (Expr.Const 0)) (assign "y" (Expr.Const 1))));
     parse_case "parse if"
       "pre { true } if x = 0 then skip else skip end post { true }"
@@ -536,22 +503,18 @@ let parser_basic_tests =
     parse_case "parse while"
       "pre { true } while x > 0 invariant { true } do skip end post { true }"
       (triv (while_ (b_gt "x" 0) Formula.Top skip));
-    parse_case "parse assert"
-      "pre { true } assert { x = 0 } post { true }"
+    parse_case "parse assert" "pre { true } assert { x = 0 } post { true }"
       (triv (assert_ (f_eq "x" 0)));
-    parse_case "parse assume"
-      "pre { true } assume { false } post { true }"
+    parse_case "parse assume" "pre { true } assume { false } post { true }"
       (triv (assume_ Formula.Bot));
-    parse_case "parse non-trivial pre/post"
-      "pre { x >= 0 } skip post { x = 0 }"
+    parse_case "parse non-trivial pre/post" "pre { x >= 0 } skip post { x = 0 }"
       { pre = f_ge "x" 0; body = skip; post = f_eq "x" 0 };
   ]
 
 (* Précédences et associativités *)
 let parser_precedence_tests =
   [
-    parse_case "expr: mul over add"
-      "pre { true } x := a + b * c post { true }"
+    parse_case "expr: mul over add" "pre { true } x := a + b * c post { true }"
       (triv (assign "x" Expr.(Add (Var "a", Mul (Var "b", Var "c")))));
     parse_case "expr: parens override"
       "pre { true } x := (a + b) * c post { true }"
@@ -559,25 +522,26 @@ let parser_precedence_tests =
     parse_case "expr: unary minus tighter than mul"
       "pre { true } x := -a * b post { true }"
       (triv (assign "x" Expr.(Mul (Neg (Var "a"), Var "b"))));
-    parse_case "expr: double unary"
-      "pre { true } x := - -a post { true }"
+    parse_case "expr: double unary" "pre { true } x := - -a post { true }"
       (triv (assign "x" Expr.(Neg (Neg (Var "a")))));
     parse_case "expr: sub left-assoc"
       "pre { true } x := a - b - c post { true }"
       (triv (assign "x" Expr.(Sub (Sub (Var "a", Var "b"), Var "c"))));
     parse_case "bexpr: and binds tighter than or"
-      "pre { true } if a = 0 and b = 0 or c = 0 then skip else skip end post \
-       { true }"
+      "pre { true } if a = 0 and b = 0 or c = 0 then skip else skip end post { \
+       true }"
       (triv
          (if_
             Bool_expr.(
               Or
-                ( And (Atom (Eq (Expr.Var "a", Expr.Const 0)),
-                       Atom (Eq (Expr.Var "b", Expr.Const 0))),
+                ( And
+                    ( Atom (Eq (Expr.Var "a", Expr.Const 0)),
+                      Atom (Eq (Expr.Var "b", Expr.Const 0)) ),
                   Atom (Eq (Expr.Var "c", Expr.Const 0)) ))
             skip skip));
     parse_case "bexpr: not binds tighter than and"
-      "pre { true } if not x = 0 and y = 0 then skip else skip end post { true }"
+      "pre { true } if not x = 0 and y = 0 then skip else skip end post { true \
+       }"
       (triv
          (if_
             Bool_expr.(
@@ -627,20 +591,16 @@ let parser_precedence_tests =
 (* Spécificités du lexer *)
 let parser_lex_tests =
   [
-    parse_case "leading comment"
-      "(* before *) pre { true } skip post { true }"
+    parse_case "leading comment" "(* before *) pre { true } skip post { true }"
       (triv skip);
     parse_case "comment inside annotation"
-      "pre { true (* inside *) } skip post { true }"
-      (triv skip);
+      "pre { true (* inside *) } skip post { true }" (triv skip);
     parse_case "nested comments"
-      "pre { true } (* outer (* inner *) more *) skip post { true }"
-      (triv skip);
+      "pre { true } (* outer (* inner *) more *) skip post { true }" (triv skip);
     parse_case "underscore in integer"
       "pre { x = 1_000_000 } skip post { true }"
       {
-        pre =
-          Formula.(Atom (Atom.Eq (Term.Var "x", Term.Const 1_000_000)));
+        pre = Formula.(Atom (Atom.Eq (Term.Var "x", Term.Const 1_000_000)));
         body = skip;
         post = Formula.Top;
       };
@@ -681,8 +641,7 @@ let parser_round_trip_tests =
             (assign "x" (Expr.Const 0))
             (seq (assign "y" (Expr.Const 1)) (assign "z" (Expr.Const 2)))));
     round_trip_case "if-else" (triv (if_ (b_eq "x" 0) skip skip));
-    round_trip_case "while"
-      (triv (while_ (b_gt "x" 0) Formula.Top skip));
+    round_trip_case "while" (triv (while_ (b_gt "x" 0) Formula.Top skip));
     round_trip_case "assert" (triv (assert_ (f_eq "x" 0)));
     round_trip_case "assume" (triv (assume_ Formula.Bot));
     round_trip_case "nested if"
@@ -695,8 +654,7 @@ let parser_round_trip_tests =
     round_trip_case "arithmetic with parens"
       (triv
          (assign "x"
-            Expr.(
-              Mul (Add (Var "a", Var "b"), Sub (Var "c", Const 5)))));
+            Expr.(Mul (Add (Var "a", Var "b"), Sub (Var "c", Const 5)))));
     round_trip_case "complex bexpr"
       (triv
          (if_
@@ -713,9 +671,7 @@ let parser_round_trip_tests =
           Formula.(
             Imp
               ( Atom (Atom.Eq (Term.Var "x", Term.Const 0)),
-                Iff
-                  ( Atom (Atom.Eq (Term.Var "y", Term.Const 0)),
-                    Bot ) ));
+                Iff (Atom (Atom.Eq (Term.Var "y", Term.Const 0)), Bot) ));
         body = skip;
         post = Formula.Top;
       };
@@ -738,8 +694,7 @@ let parser_round_trip_tests =
                    ( Atom (Atom.Le (Term.Var "i", Term.Var "n")),
                      Atom (Atom.Ge (Term.Var "i", Term.Const 0)) ))
                (assign "i" Expr.(Add (Var "i", Const 1))));
-        post =
-          Formula.(Atom (Atom.Eq (Term.Var "i", Term.Var "n")));
+        post = Formula.(Atom (Atom.Eq (Term.Var "i", Term.Var "n")));
       };
   ]
 

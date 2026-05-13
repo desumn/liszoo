@@ -1,3 +1,4 @@
 (library
  (name wp)
- (public_name liszoo.wp))
+ (public_name liszoo.wp)
+ (libraries liss formula common))

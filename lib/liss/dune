@@ -1,7 +1,7 @@
 (library
  (name liss)
  (public_name liszoo.liss)
- (libraries common formula menhirLib))
+ (libraries common formula menhirLib fmt))
 
 (ocamllex lexer)
 
