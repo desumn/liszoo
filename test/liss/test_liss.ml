@@ -199,7 +199,7 @@ let bexpr_equal_tests =
             Alcotest.(
               check' bexpr_t ~msg:"true = true" ~actual:True ~expected:True));
         Alcotest.test_case "not equal true vs false" `Quick (fun () ->
-            Alcotest.(check bool) "different" false (equal True False));
+            Alcotest.(check bool) "different" false (Bool_expr.equal True False));
         Alcotest.test_case "equal nested" `Quick (fun () ->
             let l = And (Atom (Eq (Var "x", Const 0)), True) in
             let r = And (Atom (Eq (Var "x", Const 0)), True) in
