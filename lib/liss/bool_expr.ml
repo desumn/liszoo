@@ -9,7 +9,7 @@ type atom =
 let pp_atom ppf atom =
   match atom with
   | Eq (l, r) -> Fmt.pf ppf "%a = %a" Expr.pp l Expr.pp r
-  | Neq (l, r) -> Fmt.pf ppf "%a <> %a" Expr.pp l Expr.pp r
+  | Neq (l, r) -> Fmt.pf ppf "%a /= %a" Expr.pp l Expr.pp r
   | Lt (l, r) -> Fmt.pf ppf "%a < %a" Expr.pp l Expr.pp r
   | Le (l, r) -> Fmt.pf ppf "%a <= %a" Expr.pp l Expr.pp r
   | Gt (l, r) -> Fmt.pf ppf "%a > %a" Expr.pp l Expr.pp r
@@ -50,15 +50,15 @@ let rec pp_at level ppf bool_expr =
   | True -> Fmt.string ppf "true"
   | False -> Fmt.string ppf "false"
   | Atom atom -> pp_atom ppf atom
-  | Not (Atom _ as sub) -> Fmt.pf ppf "~(%a)" (pp_at (not_level + 1)) sub
-  | Not sub -> Fmt.pf ppf "~%a" (pp_at (not_level + 1)) sub
+  | Not (Atom _ as sub) -> Fmt.pf ppf "not (%a)" (pp_at (not_level + 1)) sub
+  | Not sub -> Fmt.pf ppf "not %a" (pp_at (not_level + 1)) sub
   | And (l, r) ->
       paren_if (level > and_level) ppf @@ fun () ->
-      Fmt.pf ppf "@[<2>%a && %a@]" (pp_at and_level) l
+      Fmt.pf ppf "@[<2>%a and %a@]" (pp_at and_level) l
         (pp_at (and_level + 1))
         r
   | Or (l, r) ->
       paren_if (level > or_level) ppf @@ fun () ->
-      Fmt.pf ppf "@[<2>%a || %a@]" (pp_at or_level) l (pp_at (or_level + 1)) r
+      Fmt.pf ppf "@[<2>%a or %a@]" (pp_at or_level) l (pp_at (or_level + 1)) r
 
 let pp = pp_at 0

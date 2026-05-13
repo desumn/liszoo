@@ -14,16 +14,16 @@ let rec free_vars expr =
   | Add (l, r) | Sub (l, r) | Mul (l, r) ->
       Common.StringSet.union (free_vars l) (free_vars r)
 
-let equal (term1 : t) (term2 : t) = term1 = term2
-let compare (term1 : t) (term2 : t) = compare term1 term2
+let equal (expr1 : t) (expr2 : t) = expr1 = expr2
+let compare (expr1 : t) (expr2 : t) = compare expr1 expr2
 let add_level = 1
 let sub_level = 1
 let mul_level = 2
 let neg_level = 3
 
-let rec pp_at level ppf term =
+let rec pp_at level ppf expr =
   let open Common.Pretty in
-  match term with
+  match expr with
   | Var var -> Fmt.string ppf var
   | Const const -> Fmt.int ppf const
   | Neg term ->

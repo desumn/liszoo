@@ -1,5 +1,4 @@
 
-module Formula = struct
   let rec to_term (expr : Expr.t) =
     match expr with
     | Var var -> Formula.Term.Var var
@@ -26,5 +25,3 @@ module Formula = struct
     | Not sub -> Formula.Not (to_formula sub)
     | And (l, r) -> Formula.And (to_formula l, to_formula r)
     | Or (l, r) -> Formula.Or (to_formula l, to_formula r)
-
-end
