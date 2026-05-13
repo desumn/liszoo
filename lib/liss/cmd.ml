@@ -23,14 +23,21 @@ let rec equal (cmd1 : t) (cmd2 : t) =
 | ( Skip | Assign _ | Seq _ | If _ | While _ | Assert _ | Assume _ ), _ ->
     false
 
-let rec pp ppf (cmd : t) =
+let rec pp ppf cmd = Fmt.pf ppf "@[<v>%a@]" pp_node cmd
+
+and pp_node ppf (cmd : t) =
   match cmd.node with
   | Skip -> Fmt.string ppf "skip"
-  | Assign (to_, expr) -> Fmt.pf ppf "%s := %a" to_ Expr.pp expr
-  | Assert cond -> Fmt.pf ppf "assert { %a }" Formula.pp cond
-  | Assume cond -> Fmt.pf ppf "assume { %a }" Formula.pp cond
-  | Seq (left, right) -> Fmt.pf ppf "%a; %a" pp left pp right 
-  | If (cond, then_, else_) -> Fmt.pf ppf "if %a then %a else %a end" Bool_expr.pp cond pp then_ pp else_
-  | While (cond, inv, body) -> Fmt.pf ppf "while %a invariant { %a } do %a end" Bool_expr.pp cond Formula.pp inv pp body
-
-
+  | Assign (x, e) -> Fmt.pf ppf "%s := %a" x Expr.pp e
+  | Assert f -> Fmt.pf ppf "assert { %a }" Formula.pp f
+  | Assume f -> Fmt.pf ppf "assume { %a }" Formula.pp f
+  | Seq (s1, s2) ->
+      Fmt.pf ppf "%a;@,%a" pp_node s1 pp_node s2
+  | If (c, t, e) ->
+      Fmt.pf ppf
+        "@[<v 2>if %a then@,%a@]@,@[<v 2>else@,%a@]@,end"
+        Bool_expr.pp c pp_node t pp_node e
+  | While (c, i, b) ->
+      Fmt.pf ppf
+        "@[<v 2>while %a invariant { %a } do@,%a@]@,end"
+        Bool_expr.pp c Formula.pp i pp_node b
