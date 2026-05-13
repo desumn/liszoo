@@ -1,6 +1,18 @@
 open StdLabels
 open Liss
 
+type kind =
+  | Pre_implies_wp
+  | Loop_invariant_preserved
+  | Loop_exit
+  | Assertion
+
+type vc = {
+  kind : kind;
+  loc : Lexing.position * Lexing.position;
+  goal : Formula.t
+}
+
 let rec wp (cmd : Cmd.t) post =
   let open Cmd in
   match cmd.node with
@@ -12,7 +24,7 @@ let rec wp (cmd : Cmd.t) post =
       Formula.(
         And (Imp (cond_form, wp then_ post), Imp (Not cond_form, wp else_ post)))
   | While (_, inv, _) -> inv
-  | Assert cond -> Formula.And (cond, post)
+  | Assert cond -> Formula.Imp (cond, post)
   | Assume cond -> Formula.Imp (cond, post)
 
 let rec vcs (cmd : Cmd.t) post =
@@ -21,36 +33,38 @@ let rec vcs (cmd : Cmd.t) post =
   | Skip -> []
   | Assign _ -> []
   | Seq (left, right) ->
-      List.concat [ vcs right post; vcs left (wp right post) ]
-  | If (_, then_, else_) -> List.concat [ vcs then_ post; vcs else_ post ]
+      let vcs_right = vcs right post in
+      let vcs_left = vcs left (wp right post) in
+      let vcs_right = List.map vcs_right ~f:(fun vc -> {vc with goal = wp left vc.goal}) in
+      List.concat [ vcs_left; vcs_right ]
+  | If (cond, then_, else_) ->
+    let cond_form = Conv.to_formula cond in
+    let vcs_then = List.map (vcs then_ post) ~f:(fun vc -> {vc with goal = Imp (cond_form, vc.goal)}) in
+    let vcs_else = List.map (vcs else_ post) ~f:(fun vc -> {vc with goal = Imp (cond_form, vc.goal)}) in
+    List.concat [ vcs_then; vcs_else ]
   | While (cond, inv, body) ->
+      let loc = body.loc in
       let cond_form = Conv.to_formula cond in
+      let body_vcs = List.map (vcs body inv) ~f:(fun vc -> {vc with goal = Imp (And(inv, cond_form), vc.goal)}) in
       List.concat
         [
-          vcs body inv;
-          Formula.[ Imp (And (inv, cond_form), wp body inv) ];
-          Formula.[ Imp (And (inv, Not cond_form), post) ];
+          body_vcs;
+          [{ loc; kind = Loop_invariant_preserved ; goal = Formula.( Imp (And (inv, cond_form), wp body inv) )}];
+          [{ loc; kind = Loop_exit; goal = Formula.(Imp (And (inv, Not cond_form), post))}];
         ]
-  | Assert _ | Assume _ -> []
+  | Assert cond -> [{loc = cmd.loc; kind = Assertion; goal = cond}]
+  | Assume _ -> []
 
 let verify (prog : Program.t) =
   List.concat
     [
-      Formula.[ Imp (prog.pre, wp prog.body prog.post) ];
-      vcs prog.body prog.post;
+      [{ loc = Lexing.dummy_pos, Lexing.dummy_pos;
+        kind = Pre_implies_wp;
+        goal = Formula.(Imp (prog.pre, wp prog.body prog.post)) }];
+      vcs prog.body prog.post |> List.map ~f:(fun vc -> {vc with goal = Imp (prog.pre, vc.goal)});
     ]
 
 let verify_and_check (prog : Program.t) =
-  let open Result.Syntax in
   let vcs = verify prog in
   vcs
-  |> List.map ~f:(Smt.Solver.check_alt_ergo)
-  |> List.fold_left ~init:(Ok Smt.Solver.Valid)
-     ~f:(fun final_result smt_result ->
-       let open Smt.Solver in
-       let* result = smt_result in
-       let+ final_result = final_result in
-       match final_result, result with
-       | Valid, Valid -> Valid
-       | _, _ -> Unknown `Unknown
-     )
+  |> List.map ~f:(fun vc -> vc, Smt.Solver.check_alt_ergo vc.goal)
