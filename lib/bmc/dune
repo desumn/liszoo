@@ -1,0 +1,4 @@
+(library
+ (name bmc)
+ (public_name liszoo.bmc)
+ (libraries common formula liss fmt))
