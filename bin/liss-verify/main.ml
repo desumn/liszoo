@@ -38,13 +38,13 @@ let parse_file path =
       Grace.Diagnostic.Message.create primary
       |> Grace.Diagnostic.Label.primary ~range in
     let diagnostic =
-      Grace.Diagnostic.createf Grace.Diagnostic.Severity.Error "Syntax error"
+      Grace.Diagnostic.createf Grace.Diagnostic.Severity.Error "Syntax error during verification"
         ~labels:[primary_label] ~notes in
     let diagnotic_pp = Grace_ansi_renderer.pp_diagnostic
       ~code_to_string:(fun _ -> "")
       ~config:(Grace_ansi_renderer.Config.default) in
-    let message = Fmt.str "%a" (diagnotic_pp) diagnostic in
-    Error (`Msg message)
+    diagnotic_pp Format.err_formatter diagnostic;
+    Error (`Msg "")
 
 let get_line_num (vc : Wp.vc) =
   let start, _ = vc.loc in
