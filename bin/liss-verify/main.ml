@@ -40,11 +40,7 @@ let parse_file path =
     let diagnostic =
       Grace.Diagnostic.createf Grace.Diagnostic.Severity.Error "Syntax error during verification"
         ~labels:[primary_label] ~notes in
-    let diagnotic_pp = Grace_ansi_renderer.pp_diagnostic
-      ~code_to_string:(fun _ -> "")
-      ~config:(Grace_ansi_renderer.Config.default) in
-    diagnotic_pp Format.err_formatter diagnostic;
-    Error (`Msg "")
+    Error (`Syntax_error diagnostic)
 
 let get_line_num (vc : Wp.vc) =
   let start, _ = vc.loc in
@@ -85,8 +81,18 @@ let check_and_output program show_goals =
 
 let parse_and_verify file show_goals =
   match parse_file file with
-  | Ok (program, _content) -> Ok (check_and_output program show_goals)
-  | Error _ as err -> err
+  | Ok (program, _content) ->
+    check_and_output program show_goals;
+    Cmd.Exit.ok
+  | Error (`Syntax_error diagnostic) -> 
+    let diagnotic_pp = Grace_ansi_renderer.pp_diagnostic
+      ~code_to_string:(fun _ -> "")
+      ~config:(Grace_ansi_renderer.Config.default) in
+    Fmt.epr "%a" diagnotic_pp diagnostic;
+    Cmd.Exit.some_error
+  | Error (`Msg message) ->
+    Fmt.epr "liss-verify: %s" message;
+    Cmd.Exit.some_error
 
 let program_arg =
   let doc = "path to a liss program" in
@@ -100,6 +106,6 @@ let cmd =
   let doc = "Verify a liss program" in
   let info = Cmd.info "liss-verify" ~version:"0.1.0" ~doc in
   Cmd.v info
-    Term.(term_result (const parse_and_verify $ program_arg $ show_goals_arg))
+    Term.(const parse_and_verify $ program_arg $ show_goals_arg)
 
-let () = exit (Cmd.eval cmd)
+let () = exit (Cmd.eval' cmd)
