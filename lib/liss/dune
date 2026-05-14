@@ -6,4 +6,13 @@
 (ocamllex lexer)
 
 (menhir
- (modules parser))
+ (modules parser)
+ (flags --table --strict))
+
+(rule
+ (targets parser_messages.ml)
+ (deps parser.messages parser.mly)
+ (action
+  (with-stdout-to
+   %{targets}
+   (run menhir --compile-errors %{dep:parser.messages} %{dep:parser.mly}))))
