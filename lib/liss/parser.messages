@@ -8,7 +8,7 @@ program: WHILE
 ##
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a program. A Liss program starts with `pre { ... }`, followed by a command body, then `post { ... }`.
 
 program: PRE WHILE
 ##
@@ -20,7 +20,7 @@ program: PRE WHILE
 ## PRE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `{` after `pre` to open the precondition formula.
 
 program: PRE LBRACE WHILE
 ##
@@ -32,7 +32,7 @@ program: PRE LBRACE WHILE
 ## PRE LBRACE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `pre {`. A formula is `true`, `false`, a comparison like `x = 0`, a negation `~F`, parentheses `(F)`, or a combination using `/\`, `\/`, `=>`, `<=>`.
 
 program: PRE LBRACE TILDE WHILE
 ##
@@ -44,7 +44,7 @@ program: PRE LBRACE TILDE WHILE
 ## TILDE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `~` (logical negation).
 
 program: PRE LBRACE MINUS WHILE
 ##
@@ -56,7 +56,7 @@ program: PRE LBRACE MINUS WHILE
 ## MINUS
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `-` (unary minus). A term is a variable, an integer, or a parenthesized term.
 
 program: PRE LBRACE MINUS LPAREN WHILE
 ##
@@ -68,7 +68,7 @@ program: PRE LBRACE MINUS LPAREN WHILE
 ## LPAREN
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `(` in this arithmetic context.
 
 program: PRE LBRACE MINUS LPAREN IDENT WHILE
 ##
@@ -83,7 +83,7 @@ program: PRE LBRACE MINUS LPAREN IDENT WHILE
 ## LPAREN term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `)` to close the parenthesized term, or an arithmetic operator `+`, `-`, `*` to continue.
 
 program: PRE LBRACE IDENT STAR WHILE
 ##
@@ -95,7 +95,7 @@ program: PRE LBRACE IDENT STAR WHILE
 ## term STAR
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `*` (multiplication).
 
 program: PRE LBRACE IDENT PLUS WHILE
 ##
@@ -107,7 +107,7 @@ program: PRE LBRACE IDENT PLUS WHILE
 ## term PLUS
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `+` (addition).
 
 program: PRE LBRACE IDENT PLUS IDENT WHILE
 ##
@@ -122,7 +122,7 @@ program: PRE LBRACE IDENT PLUS IDENT WHILE
 ## term PLUS term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a comparison (`=`, `<>`, `<`, `<=`, `>`, `>=`) to form an atom, or a closing delimiter (`)`, `}`) after this term.
 
 program: PRE LBRACE IDENT MINUS WHILE
 ##
@@ -134,7 +134,7 @@ program: PRE LBRACE IDENT MINUS WHILE
 ## term MINUS
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `-` (subtraction).
 
 program: PRE LBRACE IDENT MINUS IDENT WHILE
 ##
@@ -149,7 +149,7 @@ program: PRE LBRACE IDENT MINUS IDENT WHILE
 ## term MINUS term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a comparison (`=`, `<>`, `<`, `<=`, `>`, `>=`) to form an atom, or a closing delimiter (`)`, `}`) after this term.
 
 program: PRE LBRACE LPAREN WHILE
 ##
@@ -162,7 +162,7 @@ program: PRE LBRACE LPAREN WHILE
 ## LPAREN
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term or formula after `(`.
 
 program: PRE LBRACE LPAREN IDENT WHILE
 ##
@@ -183,7 +183,7 @@ program: PRE LBRACE LPAREN IDENT WHILE
 ## LPAREN term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `)` to close, an arithmetic operator (`+`, `-`, `*`), or a comparison (`=`, `<>`, `<`, `<=`, `>`, `>=`) to form a formula atom.
 
 program: PRE LBRACE IDENT NEQ_LOG WHILE
 ##
@@ -195,7 +195,7 @@ program: PRE LBRACE IDENT NEQ_LOG WHILE
 ## term NEQ_LOG
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `<>` (logical inequality).
 
 program: PRE LBRACE IDENT NEQ_LOG IDENT WHILE
 ##
@@ -210,7 +210,7 @@ program: PRE LBRACE IDENT NEQ_LOG IDENT WHILE
 ## term NEQ_LOG term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a logical operator (`/\`, `\/`, `=>`, `<=>`), or a closing delimiter after this atom.
 
 program: PRE LBRACE IDENT LT WHILE
 ##
@@ -222,7 +222,7 @@ program: PRE LBRACE IDENT LT WHILE
 ## term LT
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `<` (less than).
 
 program: PRE LBRACE IDENT LT IDENT WHILE
 ##
@@ -237,7 +237,7 @@ program: PRE LBRACE IDENT LT IDENT WHILE
 ## term LT term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a logical operator (`/\`, `\/`, `=>`, `<=>`), or a closing delimiter after this atom.
 
 program: PRE LBRACE IDENT LE WHILE
 ##
@@ -249,7 +249,7 @@ program: PRE LBRACE IDENT LE WHILE
 ## term LE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `<=` (less than or equal).
 
 program: PRE LBRACE IDENT LE IDENT WHILE
 ##
@@ -264,7 +264,7 @@ program: PRE LBRACE IDENT LE IDENT WHILE
 ## term LE term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a logical operator (`/\`, `\/`, `=>`, `<=>`), or a closing delimiter after this atom.
 
 program: PRE LBRACE IDENT GT WHILE
 ##
@@ -276,7 +276,7 @@ program: PRE LBRACE IDENT GT WHILE
 ## term GT
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `>` (greater than).
 
 program: PRE LBRACE IDENT GT IDENT WHILE
 ##
@@ -291,7 +291,7 @@ program: PRE LBRACE IDENT GT IDENT WHILE
 ## term GT term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a logical operator (`/\`, `\/`, `=>`, `<=>`), or a closing delimiter after this atom.
 
 program: PRE LBRACE IDENT GE WHILE
 ##
@@ -303,7 +303,7 @@ program: PRE LBRACE IDENT GE WHILE
 ## term GE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `>=` (greater than or equal).
 
 program: PRE LBRACE IDENT GE IDENT WHILE
 ##
@@ -318,7 +318,7 @@ program: PRE LBRACE IDENT GE IDENT WHILE
 ## term GE term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a logical operator (`/\`, `\/`, `=>`, `<=>`), or a closing delimiter after this atom.
 
 program: PRE LBRACE IDENT EQ WHILE
 ##
@@ -330,7 +330,7 @@ program: PRE LBRACE IDENT EQ WHILE
 ## term EQ
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a term after `=` (equality).
 
 program: PRE LBRACE IDENT EQ IDENT WHILE
 ##
@@ -345,7 +345,7 @@ program: PRE LBRACE IDENT EQ IDENT WHILE
 ## term EQ term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a logical operator (`/\`, `\/`, `=>`, `<=>`), or a closing delimiter after this atom.
 
 program: PRE LBRACE LPAREN FALSE RBRACE
 ##
@@ -361,7 +361,7 @@ program: PRE LBRACE LPAREN FALSE RBRACE
 ## LPAREN formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `)` to close the parenthesized formula, or a logical operator (`/\`, `\/`, `=>`, `<=>`) to continue.
 
 program: PRE LBRACE FALSE WEDGE WHILE
 ##
@@ -373,7 +373,7 @@ program: PRE LBRACE FALSE WEDGE WHILE
 ## formula WEDGE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `/\` (logical and).
 
 program: PRE LBRACE IDENT WHILE
 ##
@@ -393,7 +393,7 @@ program: PRE LBRACE IDENT WHILE
 ## term
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a comparison operator (`=`, `<>`, `<`, `<=`, `>`, `>=`) to form a formula atom, or an arithmetic operator (`+`, `-`, `*`) to continue the term.
 
 program: PRE LBRACE FALSE VEE WHILE
 ##
@@ -405,7 +405,7 @@ program: PRE LBRACE FALSE VEE WHILE
 ## formula VEE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `\/` (logical or).
 
 program: PRE LBRACE FALSE VEE FALSE WHILE
 ##
@@ -421,7 +421,7 @@ program: PRE LBRACE FALSE VEE FALSE WHILE
 ## formula VEE formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `}` to close the formula, a logical operator (`/\`, `\/`, `=>`, `<=>`), or `)` if inside parentheses.
 
 program: PRE LBRACE FALSE IMP WHILE
 ##
@@ -433,7 +433,7 @@ program: PRE LBRACE FALSE IMP WHILE
 ## formula IMP
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `=>` (implication).
 
 program: PRE LBRACE FALSE IMP FALSE WHILE
 ##
@@ -449,7 +449,7 @@ program: PRE LBRACE FALSE IMP FALSE WHILE
 ## formula IMP formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `}` to close the formula, a logical operator (`/\`, `\/`, `=>`, `<=>`), or `)` if inside parentheses.
 
 program: PRE LBRACE FALSE IFF WHILE
 ##
@@ -461,7 +461,7 @@ program: PRE LBRACE FALSE IFF WHILE
 ## formula IFF
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `<=>` (equivalence).
 
 program: PRE LBRACE FALSE IFF FALSE WHILE
 ##
@@ -477,7 +477,7 @@ program: PRE LBRACE FALSE IFF FALSE WHILE
 ## formula IFF formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `}` to close the formula, a logical operator (`/\`, `\/`, `=>`, `<=>`), or `)` if inside parentheses.
 
 program: PRE LBRACE FALSE RPAREN
 ##
@@ -493,7 +493,7 @@ program: PRE LBRACE FALSE RPAREN
 ## PRE LBRACE formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `}` to close the precondition formula, or a logical operator (`/\`, `\/`, `=>`, `<=>`) to continue.
 
 program: PRE LBRACE FALSE RBRACE WEDGE
 ##
@@ -505,7 +505,7 @@ program: PRE LBRACE FALSE RBRACE WEDGE
 ## PRE LBRACE formula RBRACE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a command after `pre { ... }`. A command is `skip`, an assignment `x := e`, `if ... then ... else ... end`, `while ... invariant { ... } do ... end`, `assert { ... }`, or `assume { ... }`.
 
 program: PRE LBRACE FALSE RBRACE WHILE WHILE
 ##
@@ -517,7 +517,7 @@ program: PRE LBRACE FALSE RBRACE WHILE WHILE
 ## WHILE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a boolean condition after `while`. The condition is a program boolean expression like `x < n`, possibly combined with `and`, `or`, `not`.
 
 program: PRE LBRACE FALSE RBRACE WHILE NOT WHILE
 ##
@@ -529,7 +529,7 @@ program: PRE LBRACE FALSE RBRACE WHILE NOT WHILE
 ## NOT
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a boolean expression after `not` (program-level negation).
 
 program: PRE LBRACE FALSE RBRACE WHILE MINUS WHILE
 ##
@@ -541,7 +541,7 @@ program: PRE LBRACE FALSE RBRACE WHILE MINUS WHILE
 ## MINUS
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `-` (unary minus). An expression is a variable, an integer, or a parenthesized expression.
 
 program: PRE LBRACE FALSE RBRACE IDENT ASSIGN LPAREN WHILE
 ##
@@ -553,7 +553,7 @@ program: PRE LBRACE FALSE RBRACE IDENT ASSIGN LPAREN WHILE
 ## LPAREN
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `(`.
 
 program: PRE LBRACE FALSE RBRACE IDENT ASSIGN LPAREN IDENT WHILE
 ##
@@ -568,7 +568,7 @@ program: PRE LBRACE FALSE RBRACE IDENT ASSIGN LPAREN IDENT WHILE
 ## LPAREN expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `)` to close the parenthesized expression, or an arithmetic operator (`+`, `-`, `*`) to continue.
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT STAR WHILE
 ##
@@ -580,7 +580,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT STAR WHILE
 ## expr STAR
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `*` (multiplication).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT PLUS WHILE
 ##
@@ -592,7 +592,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT PLUS WHILE
 ## expr PLUS
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `+` (addition).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT PLUS IDENT WHILE
 ##
@@ -607,7 +607,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT PLUS IDENT WHILE
 ## expr PLUS expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a comparison (`=`, `/=`, `<`, `<=`, `>`, `>=`) to form a boolean atom, or end of the expression.
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT MINUS WHILE
 ##
@@ -619,7 +619,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT MINUS WHILE
 ## expr MINUS
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `-` (subtraction).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT MINUS IDENT WHILE
 ##
@@ -634,7 +634,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT MINUS IDENT WHILE
 ## expr MINUS expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`), a comparison (`=`, `/=`, `<`, `<=`, `>`, `>=`) to form a boolean atom, or end of the expression.
 
 program: PRE LBRACE FALSE RBRACE WHILE LPAREN WHILE
 ##
@@ -647,7 +647,7 @@ program: PRE LBRACE FALSE RBRACE WHILE LPAREN WHILE
 ## LPAREN
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a boolean or arithmetic expression after `(`.
 
 program: PRE LBRACE FALSE RBRACE WHILE LPAREN IDENT WHILE
 ##
@@ -668,7 +668,7 @@ program: PRE LBRACE FALSE RBRACE WHILE LPAREN IDENT WHILE
 ## LPAREN expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `)` to close, an arithmetic operator (`+`, `-`, `*`), or a comparison (`=`, `/=`, `<`, `<=`, `>`, `>=`) to form a boolean atom.
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT NEQ_PROG WHILE
 ##
@@ -680,7 +680,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT NEQ_PROG WHILE
 ## expr NEQ_PROG
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `/=` (program inequality).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT NEQ_PROG IDENT WHILE
 ##
@@ -695,7 +695,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT NEQ_PROG IDENT WHILE
 ## expr NEQ_PROG expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator to continue, a boolean operator (`and`, `or`), or a closing delimiter (`then`, `)`, `invariant`).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT LT WHILE
 ##
@@ -707,7 +707,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT LT WHILE
 ## expr LT
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `<` (less than).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT LT IDENT WHILE
 ##
@@ -722,7 +722,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT LT IDENT WHILE
 ## expr LT expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator to continue, a boolean operator (`and`, `or`), or a closing delimiter (`then`, `)`, `invariant`).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT LE WHILE
 ##
@@ -734,7 +734,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT LE WHILE
 ## expr LE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `<=` (less than or equal).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT LE IDENT WHILE
 ##
@@ -749,7 +749,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT LE IDENT WHILE
 ## expr LE expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator to continue, a boolean operator (`and`, `or`), or a closing delimiter (`then`, `)`, `invariant`).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT GT WHILE
 ##
@@ -761,7 +761,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT GT WHILE
 ## expr GT
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `>` (greater than).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT GT IDENT WHILE
 ##
@@ -776,7 +776,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT GT IDENT WHILE
 ## expr GT expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator to continue, a boolean operator (`and`, `or`), or a closing delimiter (`then`, `)`, `invariant`).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT GE WHILE
 ##
@@ -788,7 +788,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT GE WHILE
 ## expr GE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `>=` (greater than or equal).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT GE IDENT WHILE
 ##
@@ -803,7 +803,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT GE IDENT WHILE
 ## expr GE expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator to continue, a boolean operator (`and`, `or`), or a closing delimiter (`then`, `)`, `invariant`).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT EQ WHILE
 ##
@@ -815,7 +815,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT EQ WHILE
 ## expr EQ
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression after `=` (equality, program comparison).
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT EQ IDENT WHILE
 ##
@@ -830,7 +830,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT EQ IDENT WHILE
 ## expr EQ expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator to continue, a boolean operator (`and`, `or`), or a closing delimiter (`then`, `)`, `invariant`).
 
 program: PRE LBRACE FALSE RBRACE WHILE LPAREN FALSE WHILE
 ##
@@ -844,7 +844,7 @@ program: PRE LBRACE FALSE RBRACE WHILE LPAREN FALSE WHILE
 ## LPAREN bexpr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `)` to close the parenthesized boolean expression, or a boolean operator (`and`, `or`) to continue.
 
 program: PRE LBRACE FALSE RBRACE IF FALSE OR WHILE
 ##
@@ -856,7 +856,7 @@ program: PRE LBRACE FALSE RBRACE IF FALSE OR WHILE
 ## bexpr OR
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a boolean expression after `or`.
 
 program: PRE LBRACE FALSE RBRACE WHILE IDENT WHILE
 ##
@@ -876,7 +876,7 @@ program: PRE LBRACE FALSE RBRACE WHILE IDENT WHILE
 ## expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a comparison operator (`=`, `/=`, `<`, `<=`, `>`, `>=`) to form a boolean atom, or an arithmetic operator (`+`, `-`, `*`) to continue this expression.
 
 program: PRE LBRACE FALSE RBRACE IF FALSE OR FALSE WHILE
 ##
@@ -890,7 +890,7 @@ program: PRE LBRACE FALSE RBRACE IF FALSE OR FALSE WHILE
 ## bexpr OR bexpr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a boolean operator (`and`, `or`) to continue, or a closing delimiter (`then`, `)`, `invariant`).
 
 program: PRE LBRACE FALSE RBRACE IF FALSE AND WHILE
 ##
@@ -902,7 +902,7 @@ program: PRE LBRACE FALSE RBRACE IF FALSE AND WHILE
 ## bexpr AND
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a boolean expression after `and`.
 
 program: PRE LBRACE FALSE RBRACE WHILE FALSE WHILE
 ##
@@ -916,7 +916,7 @@ program: PRE LBRACE FALSE RBRACE WHILE FALSE WHILE
 ## WHILE bexpr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `invariant { ... }` after the loop condition.
 
 program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT WHILE
 ##
@@ -928,7 +928,7 @@ program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT WHILE
 ## WHILE bexpr INVARIANT
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `{` after `invariant` to open the invariant formula.
 
 program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE WHILE
 ##
@@ -940,7 +940,7 @@ program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE WHILE
 ## WHILE bexpr INVARIANT LBRACE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `invariant {`.
 
 program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RPAREN
 ##
@@ -956,7 +956,7 @@ program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RPAREN
 ## WHILE bexpr INVARIANT LBRACE formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `}` to close the invariant formula, or a logical operator (`/\`, `\/`, `=>`, `<=>`) to continue.
 
 program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE WHILE
 ##
@@ -968,7 +968,7 @@ program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE WHILE
 ## WHILE bexpr INVARIANT LBRACE formula RBRACE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `do` to start the loop body after the invariant.
 
 program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE DO WEDGE
 ##
@@ -980,7 +980,7 @@ program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE DO WE
 ## WHILE bexpr INVARIANT LBRACE formula RBRACE DO
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a command for the loop body after `do`.
 
 program: PRE LBRACE FALSE RBRACE IF WHILE
 ##
@@ -992,7 +992,7 @@ program: PRE LBRACE FALSE RBRACE IF WHILE
 ## IF
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a boolean condition after `if`.
 
 program: PRE LBRACE FALSE RBRACE IF FALSE WHILE
 ##
@@ -1006,7 +1006,7 @@ program: PRE LBRACE FALSE RBRACE IF FALSE WHILE
 ## IF bexpr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `then` after the `if` condition.
 
 program: PRE LBRACE FALSE RBRACE IF FALSE THEN WEDGE
 ##
@@ -1018,7 +1018,7 @@ program: PRE LBRACE FALSE RBRACE IF FALSE THEN WEDGE
 ## IF bexpr THEN
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a command for the `then` branch.
 
 program: PRE LBRACE FALSE RBRACE IDENT WHILE
 ##
@@ -1030,7 +1030,7 @@ program: PRE LBRACE FALSE RBRACE IDENT WHILE
 ## IDENT
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `:=` after this identifier to form an assignment. Note: keywords like `skip`, `if`, `while` cannot be used as variable names.
 
 program: PRE LBRACE FALSE RBRACE IDENT ASSIGN WHILE
 ##
@@ -1042,7 +1042,7 @@ program: PRE LBRACE FALSE RBRACE IDENT ASSIGN WHILE
 ## IDENT ASSIGN
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic expression on the right-hand side of `:=`.
 
 program: PRE LBRACE FALSE RBRACE IDENT ASSIGN IDENT WHILE
 ##
@@ -1057,7 +1057,7 @@ program: PRE LBRACE FALSE RBRACE IDENT ASSIGN IDENT WHILE
 ## IDENT ASSIGN expr
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected an arithmetic operator (`+`, `-`, `*`) to continue the expression, or end of this command with `;`, `end`, `else`, or `post`.
 
 program: PRE LBRACE FALSE RBRACE ASSUME WHILE
 ##
@@ -1069,7 +1069,7 @@ program: PRE LBRACE FALSE RBRACE ASSUME WHILE
 ## ASSUME
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `{` after `assume` to open the formula.
 
 program: PRE LBRACE FALSE RBRACE ASSUME LBRACE WHILE
 ##
@@ -1081,7 +1081,7 @@ program: PRE LBRACE FALSE RBRACE ASSUME LBRACE WHILE
 ## ASSUME LBRACE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `assume {`.
 
 program: PRE LBRACE FALSE RBRACE ASSUME LBRACE FALSE RPAREN
 ##
@@ -1097,7 +1097,7 @@ program: PRE LBRACE FALSE RBRACE ASSUME LBRACE FALSE RPAREN
 ## ASSUME LBRACE formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `}` to close the formula, or a logical operator (`/\`, `\/`, `=>`, `<=>`) to continue.
 
 program: PRE LBRACE FALSE RBRACE ASSERT WHILE
 ##
@@ -1109,7 +1109,7 @@ program: PRE LBRACE FALSE RBRACE ASSERT WHILE
 ## ASSERT
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `{` after `assert` to open the formula.
 
 program: PRE LBRACE FALSE RBRACE ASSERT LBRACE WHILE
 ##
@@ -1121,7 +1121,7 @@ program: PRE LBRACE FALSE RBRACE ASSERT LBRACE WHILE
 ## ASSERT LBRACE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `assert {`.
 
 program: PRE LBRACE FALSE RBRACE ASSERT LBRACE FALSE RPAREN
 ##
@@ -1137,7 +1137,7 @@ program: PRE LBRACE FALSE RBRACE ASSERT LBRACE FALSE RPAREN
 ## ASSERT LBRACE formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `}` to close the formula, or a logical operator (`/\`, `\/`, `=>`, `<=>`) to continue.
 
 program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP POST
 ##
@@ -1150,7 +1150,7 @@ program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP POST
 ## IF bexpr THEN cmd
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `else` to start the else-branch, or `;` to continue with another command in the then-branch.
 
 program: PRE LBRACE FALSE RBRACE SKIP SEMI WEDGE
 ##
@@ -1162,7 +1162,7 @@ program: PRE LBRACE FALSE RBRACE SKIP SEMI WEDGE
 ## cmd SEMI
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a command after `;`.
 
 program: PRE LBRACE FALSE RBRACE SKIP SEMI SKIP WHILE
 ##
@@ -1175,7 +1175,7 @@ program: PRE LBRACE FALSE RBRACE SKIP SEMI SKIP WHILE
 ## cmd SEMI cmd
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `;` to continue with another command, or a closing keyword (`end`, `else`, `post`) to end the sequence.
 
 program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP ELSE WEDGE
 ##
@@ -1187,7 +1187,7 @@ program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP ELSE WEDGE
 ## IF bexpr THEN cmd ELSE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a command for the `else` branch.
 
 program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP ELSE SKIP POST
 ##
@@ -1200,7 +1200,7 @@ program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP ELSE SKIP POST
 ## IF bexpr THEN cmd ELSE cmd
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `end` to close the if-then-else, or `;` to continue with another command in the else-branch.
 
 program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE DO SKIP POST
 ##
@@ -1213,7 +1213,7 @@ program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE DO SK
 ## WHILE bexpr INVARIANT LBRACE formula RBRACE DO cmd
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `end` to close the while loop, or `;` to continue with another command in the loop body.
 
 program: PRE LBRACE FALSE RBRACE SKIP END
 ##
@@ -1226,7 +1226,7 @@ program: PRE LBRACE FALSE RBRACE SKIP END
 ## PRE LBRACE formula RBRACE cmd
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `post { ... }` to close the program, or `;` to continue the body with another command.
 
 program: PRE LBRACE FALSE RBRACE SKIP POST WHILE
 ##
@@ -1238,7 +1238,7 @@ program: PRE LBRACE FALSE RBRACE SKIP POST WHILE
 ## PRE LBRACE formula RBRACE cmd POST
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `{` after `post` to open the postcondition formula.
 
 program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE WHILE
 ##
@@ -1250,7 +1250,7 @@ program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE WHILE
 ## PRE LBRACE formula RBRACE cmd POST LBRACE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected a formula after `post {`.
 
 program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE FALSE RPAREN
 ##
@@ -1266,7 +1266,7 @@ program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE FALSE RPAREN
 ## PRE LBRACE formula RBRACE cmd POST LBRACE formula
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected `}` to close the postcondition formula, or a logical operator (`/\`, `\/`, `=>`, `<=>`) to continue.
 
 program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE FALSE RBRACE WHILE
 ##
@@ -1278,5 +1278,5 @@ program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE FALSE RBRACE WHILE
 ## PRE LBRACE formula RBRACE cmd POST LBRACE formula RBRACE
 ##
 
-<YOUR SYNTAX ERROR MESSAGE HERE>
+Expected end of file. The program is complete after `post { ... }`.
 
