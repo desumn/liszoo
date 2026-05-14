@@ -17,7 +17,7 @@ let fail (lexbuf : Lexing.lexbuf) (checkpoint : Program.t I.checkpoint) =
       let msg =
         match Parser_messages.message state_num with
         | msg -> msg
-        | exception Not_found -> "syntaxe error (no message found)"
+        | exception Not_found -> "syntax error (no message found)"
       in
       let pos = (lexbuf.lex_start_p, lexbuf.lex_curr_p) in
       raise (Parse_error (msg, pos))
