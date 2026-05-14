@@ -11,4 +11,9 @@
   cmdliner
   fpath
   grace
-  grace.ansi_renderer))
+  grace.ansi_renderer
+  nottui
+  unix
+  notty-community
+  notty-community.unix
+  lwd))
