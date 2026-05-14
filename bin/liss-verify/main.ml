@@ -4,12 +4,47 @@ open Cmdliner
 
 let fpath = Arg.conv (Fpath.of_string, Fpath.pp)
 
+let split_error_message message =
+  let splitted = String.split_on_char ~sep:'\n' message in
+  match splitted with
+  | [] -> ("syntax error", [])
+  | [primary] -> (primary, [])
+  | primary::secondary ->
+    let secondary =
+      List.map secondary
+      ~f:(fun secondary ->
+          if String.starts_with secondary ~prefix:"Note: "
+          then String.sub secondary ~pos:6 ~len:(String.length secondary - 6)
+          else secondary)
+      |> List.filter ~f:(fun secondary -> if String.trim secondary = "" then false else true) in
+    (primary, secondary)
+
 let parse_file path =
   let open Result.Syntax in
-  let+ content = OS.File.read path in
+  let* content = OS.File.read path in
+  let name = Fpath.to_string path in
+  let source : Grace.Source.t = `File name in
   let lexbuf = Lexing.from_string content in
-  Lexing.set_filename lexbuf (Fpath.to_string path);
-  (Liss.parse_lexbuf lexbuf, content)
+  Lexing.set_filename lexbuf name;
+  match (Liss.parse_lexbuf lexbuf, content) with
+  | program -> Ok program
+  | exception Liss.Parse_error (message, (pos_start, pos_end)) ->
+    let range = Grace.Range.create ~source
+      (Grace.Byte_index.of_lex pos_start) 
+      (Grace.Byte_index.of_lex pos_end) in
+    let (primary, notes) = split_error_message message in
+    let notes = List.map notes ~f:Grace.Diagnostic.Message.create in
+    let primary_label =
+      Grace.Diagnostic.Message.create primary
+      |> Grace.Diagnostic.Label.primary ~range in
+    let diagnostic =
+      Grace.Diagnostic.createf Grace.Diagnostic.Severity.Error "Syntax error"
+        ~labels:[primary_label] ~notes in
+    let diagnotic_pp = Grace_ansi_renderer.pp_diagnostic
+      ~code_to_string:(fun _ -> "")
+      ~config:(Grace_ansi_renderer.Config.default) in
+    let message = Fmt.str "%a" (diagnotic_pp) diagnostic in
+    Error (`Msg message)
 
 let get_line_num (vc : Wp.vc) =
   let start, _ = vc.loc in
@@ -49,9 +84,9 @@ let check_and_output program show_goals =
     !succeeded !failed
 
 let parse_and_verify file show_goals =
-  let open Result.Syntax in
-  let* program, _ = parse_file file in
-  Ok (check_and_output program show_goals)
+  match parse_file file with
+  | Ok (program, _content) -> Ok (check_and_output program show_goals)
+  | Error _ as err -> err
 
 let program_arg =
   let doc = "path to a liss program" in

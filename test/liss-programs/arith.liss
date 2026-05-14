@@ -1,6 +1,6 @@
 pre { true }
 x := 10;
-y := 20;
+y = 20;
 z := x + y;
 t := z * 2
 post { z <= x + y /\ t - z > x + x }
