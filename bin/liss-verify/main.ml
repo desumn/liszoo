@@ -51,10 +51,6 @@ let get_line_num (vc : Wp.vc) =
   let start, _ = vc.loc in
   start.pos_lnum
 
-let get_file_name (vc : Wp.vc) =
-  let start, _ = vc.loc in
-  start.pos_fname
-
 let check program =
   let vcs = Wp.verify program in
   let verdicts =
@@ -66,24 +62,41 @@ let check program =
 let verdict_line ~num ~total (vc : Wp.vc) (verdict : Smt.Solver.smt_result) =
   let open Notty in
   let open Nottui in
-  let icon, colour =
+  let icon, text, colour =
     match verdict with
-    | Valid -> ("✓", A.green)
-    | Invalid -> ("✗", A.red)
-    | Unknown _ -> ("?", A.yellow)
+    | Valid -> ("✓", "valid", A.green)
+    | Invalid -> ("✗", "invalid", A.red)
+    | Unknown _ -> ("?", "unknown", A.yellow)
   in
   let loc = Fmt.str "at line %d" (get_line_num vc) in
   Ui.hcat
     [
       Ui.atom (I.string A.(fg colour ++ st bold) icon);
+      Ui.space 1 1;
+      Ui.atom (I.string A.(fg colour) text);
       Ui.space 2 1;
       Ui.atom (I.strf "[%d/%d]" num total);
       Ui.space 2 1;
       Ui.resize ~w:30 (Nottui.Ui.atom (I.strf "%a" Wp.pp_kind vc.kind));
-      Ui.resize ~w:20 (Nottui.Ui.atom (I.string A.empty loc));
+      Ui.resize ~w:20 ~sw:1
+        ~pad:Gravity.(make ~h:`Negative ~v:`Negative)
+        (Ui.atom (I.string A.empty loc));
     ]
 
-let parse_and_verify file =
+let verdict_block ~num ~total ~show_goals (vc : Wp.vc)
+    (verdict : Smt.Solver.smt_result) =
+  let open Notty in
+  let open Nottui in
+  let main_line = verdict_line ~num ~total vc verdict in
+  let goal_line =
+    Ui.atom (I.strf ~attr:A.(fg lightblack) "    goal: %a" Formula.pp vc.goal)
+  in
+  match verdict with
+  | Valid ->
+      if not show_goals then main_line else Ui.vcat [ main_line; goal_line ]
+  | Invalid | Unknown _ -> Ui.vcat [ main_line; goal_line ]
+
+let parse_and_verify file show_goals =
   match parse_file file with
   | Ok (program, _content) ->
       let open Nottui in
@@ -94,21 +107,51 @@ let parse_and_verify file =
         List.mapi verdicts ~f:(fun i (vc, verdict) ->
             match verdict with
             | Ok verdict ->
-                verdict_line ~num:(i + 1) ~total:num_verdicts vc verdict
+                verdict_block ~num:(i + 1) ~total:num_verdicts ~show_goals vc
+                  verdict
             | Error (`Msg message) ->
                 Ui.atom (Notty.I.string A.(fg lightred ++ st italic) message))
       in
-      let ui = Ui.vcat verdict_uis in
+      let valid, invalid, unknown, error =
+        List.fold_left verdicts ~init:(0, 0, 0, 0)
+          ~f:(fun (valid, invalid, unknown, error) (_, verdict) ->
+            match verdict with
+            | Ok Smt.Solver.Valid -> (valid + 1, invalid, unknown, error)
+            | Ok Invalid -> (valid, invalid + 1, unknown, error)
+            | Ok (Unknown _) -> (valid, invalid, unknown + 1, error)
+            | Error _ -> (valid, invalid, unknown, error + 1))
+      in
       let cols =
         match Notty_unix.winsize Unix.stdout with
         | Some (c, _) -> c
         | None -> 80
       in
+      let verdicts = Ui.vcat verdict_uis in
+      let ui =
+        Ui.vcat
+          [
+            Ui.atom (I.strf ~attr:A.(st bold) "Verifying %a" Fpath.pp file);
+            Ui.atom (I.uchar A.empty (Uchar.of_int 0x2500) cols 1);
+            verdicts;
+            Ui.atom (I.uchar A.empty (Uchar.of_int 0x2500) cols 1);
+            Ui.hcat
+              [
+                Ui.atom (I.strf ~attr:A.(fg green) "%d valid" valid);
+                Ui.atom (I.string A.empty " · ");
+                Ui.atom (I.strf ~attr:A.(fg red) "%d invalid" invalid);
+                Ui.atom (I.string A.empty " · ");
+                Ui.atom (I.strf ~attr:A.(fg yellow) "%d unknown" unknown);
+                Ui.atom (I.string A.empty " · ");
+                Ui.atom (I.strf ~attr:A.(fg lightred) "%d error" error);
+              ];
+          ]
+      in
       let rows = Nottui.Ui.layout_height ui in
       let renderer = Renderer.make () in
       Renderer.update renderer (cols, rows) ui;
       Notty_unix.output_image (Renderer.image renderer);
-      Cmd.Exit.ok
+      if invalid > 0 || unknown > 0 || error > 0 then Cmd.Exit.some_error
+      else Cmd.Exit.ok
   | Error (`Syntax_error diagnostic) ->
       let diagnotic_pp =
         Grace_ansi_renderer.pp_diagnostic
@@ -125,13 +168,13 @@ let program_arg =
   let doc = "path to a liss program" in
   Arg.(required & pos 0 (some fpath) None & info [] ~docv:"FILE" ~doc)
 
-let _show_goals_arg =
+let show_goals_arg =
   let doc = "show all goals" in
   Arg.(value & flag & info [ "g"; "goals" ] ~doc)
 
 let cmd =
   let doc = "Verify a liss program" in
   let info = Cmd.info "liss-verify" ~version:"0.1.0" ~doc in
-  Cmd.v info Term.(const parse_and_verify $ program_arg)
+  Cmd.v info Term.(const parse_and_verify $ program_arg $ show_goals_arg)
 
 let () = exit (Cmd.eval' cmd)

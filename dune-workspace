@@ -5,10 +5,9 @@
   (flags
    (:standard
     -w
-    +a-4-9-40-41-42-44-45-48-58-66-67-68-69-70
+    +a-18-4-9-40-41-42-44-45-48-58-66-67-68-69-70
     -alert
     +all
-    -principal
     -short-paths
     -keep-locs
     -strict-sequence
@@ -20,13 +19,12 @@
   (flags
    (:standard
     -w
-    +a-4-9-40-41-42-44-45-48-58-66-67-68-69-70-74
+    +a-18-4-9-40-41-42-44-45-48-58-66-67-68-69-70-74
     -alert
     +all
-    -principal
     -short-paths
     -warn-error
-    +a-3-26-27-32..39
+    +a-18-3-26-27-32..39
     -strict-sequence
     -strict-formats)
    ("ocamlopt_flags"
