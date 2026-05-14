@@ -13,9 +13,9 @@ let succeed (ast : Program.t) = ast
 let fail (lexbuf : Lexing.lexbuf) (checkpoint : Program.t I.checkpoint) =
   match checkpoint with
   | I.HandlingError env ->
-    let _state_num = I.current_state_number env in
+    let state_num = I.current_state_number env in
     let msg =
-      match (* Parser_messages.message state_num *) "syntax error" with
+      match Parser_messages.message state_num with
       | msg -> msg
       | exception Not_found -> "syntaxe error (no message found)" 
     in

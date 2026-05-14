@@ -1,0 +1,1282 @@
+program: WHILE
+##
+## Ends in an error in state: 0.
+##
+## program' -> . program [ # ]
+##
+## The known suffix of the stack is as follows:
+##
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE WHILE
+##
+## Ends in an error in state: 1.
+##
+## program -> PRE . LBRACE formula RBRACE cmd POST LBRACE formula RBRACE EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE WHILE
+##
+## Ends in an error in state: 2.
+##
+## program -> PRE LBRACE . formula RBRACE cmd POST LBRACE formula RBRACE EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE LBRACE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE TILDE WHILE
+##
+## Ends in an error in state: 4.
+##
+## formula -> TILDE . formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## TILDE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE MINUS WHILE
+##
+## Ends in an error in state: 5.
+##
+## term -> MINUS . term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## MINUS
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE MINUS LPAREN WHILE
+##
+## Ends in an error in state: 6.
+##
+## term -> LPAREN . term RPAREN [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE MINUS LPAREN IDENT WHILE
+##
+## Ends in an error in state: 9.
+##
+## term -> term . PLUS term [ STAR RPAREN PLUS MINUS ]
+## term -> term . MINUS term [ STAR RPAREN PLUS MINUS ]
+## term -> term . STAR term [ STAR RPAREN PLUS MINUS ]
+## term -> LPAREN term . RPAREN [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT STAR WHILE
+##
+## Ends in an error in state: 10.
+##
+## term -> term STAR . term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## term STAR
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT PLUS WHILE
+##
+## Ends in an error in state: 13.
+##
+## term -> term PLUS . term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## term PLUS
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT PLUS IDENT WHILE
+##
+## Ends in an error in state: 14.
+##
+## term -> term . PLUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+## term -> term PLUS term . [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+## term -> term . MINUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+## term -> term . STAR term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## term PLUS term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT MINUS WHILE
+##
+## Ends in an error in state: 15.
+##
+## term -> term MINUS . term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## term MINUS
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT MINUS IDENT WHILE
+##
+## Ends in an error in state: 16.
+##
+## term -> term . PLUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+## term -> term . MINUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+## term -> term MINUS term . [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+## term -> term . STAR term [ WEDGE VEE STAR RPAREN RBRACE PLUS NEQ_LOG MINUS LT LE IMP IFF GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## term MINUS term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE LPAREN WHILE
+##
+## Ends in an error in state: 18.
+##
+## formula -> LPAREN . formula RPAREN [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## term -> LPAREN . term RPAREN [ STAR RPAREN PLUS NEQ_LOG MINUS LT LE GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE LPAREN IDENT WHILE
+##
+## Ends in an error in state: 20.
+##
+## formula -> term . EQ term [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> term . NEQ_LOG term [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> term . LT term [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> term . LE term [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> term . GT term [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> term . GE term [ WEDGE VEE RPAREN IMP IFF ]
+## term -> term . PLUS term [ STAR RPAREN PLUS NEQ_LOG MINUS LT LE GT GE EQ ]
+## term -> term . MINUS term [ STAR RPAREN PLUS NEQ_LOG MINUS LT LE GT GE EQ ]
+## term -> term . STAR term [ STAR RPAREN PLUS NEQ_LOG MINUS LT LE GT GE EQ ]
+## term -> LPAREN term . RPAREN [ STAR RPAREN PLUS NEQ_LOG MINUS LT LE GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT NEQ_LOG WHILE
+##
+## Ends in an error in state: 21.
+##
+## formula -> term NEQ_LOG . term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term NEQ_LOG
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT NEQ_LOG IDENT WHILE
+##
+## Ends in an error in state: 22.
+##
+## formula -> term NEQ_LOG term . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## term -> term . PLUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . MINUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . STAR term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term NEQ_LOG term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT LT WHILE
+##
+## Ends in an error in state: 23.
+##
+## formula -> term LT . term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term LT
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT LT IDENT WHILE
+##
+## Ends in an error in state: 24.
+##
+## formula -> term LT term . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## term -> term . PLUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . MINUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . STAR term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term LT term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT LE WHILE
+##
+## Ends in an error in state: 25.
+##
+## formula -> term LE . term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term LE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT LE IDENT WHILE
+##
+## Ends in an error in state: 26.
+##
+## formula -> term LE term . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## term -> term . PLUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . MINUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . STAR term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term LE term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT GT WHILE
+##
+## Ends in an error in state: 27.
+##
+## formula -> term GT . term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term GT
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT GT IDENT WHILE
+##
+## Ends in an error in state: 28.
+##
+## formula -> term GT term . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## term -> term . PLUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . MINUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . STAR term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term GT term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT GE WHILE
+##
+## Ends in an error in state: 29.
+##
+## formula -> term GE . term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term GE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT GE IDENT WHILE
+##
+## Ends in an error in state: 30.
+##
+## formula -> term GE term . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## term -> term . PLUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . MINUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . STAR term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term GE term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT EQ WHILE
+##
+## Ends in an error in state: 31.
+##
+## formula -> term EQ . term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term EQ
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT EQ IDENT WHILE
+##
+## Ends in an error in state: 32.
+##
+## formula -> term EQ term . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## term -> term . PLUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . MINUS term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+## term -> term . STAR term [ WEDGE VEE STAR RPAREN RBRACE PLUS MINUS IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## term EQ term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE LPAREN FALSE RBRACE
+##
+## Ends in an error in state: 33.
+##
+## formula -> formula . IFF formula [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RPAREN IMP IFF ]
+## formula -> LPAREN formula . RPAREN [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE WEDGE WHILE
+##
+## Ends in an error in state: 34.
+##
+## formula -> formula WEDGE . formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## formula WEDGE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE IDENT WHILE
+##
+## Ends in an error in state: 35.
+##
+## formula -> term . EQ term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> term . NEQ_LOG term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> term . LT term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> term . LE term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> term . GT term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> term . GE term [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## term -> term . PLUS term [ STAR PLUS NEQ_LOG MINUS LT LE GT GE EQ ]
+## term -> term . MINUS term [ STAR PLUS NEQ_LOG MINUS LT LE GT GE EQ ]
+## term -> term . STAR term [ STAR PLUS NEQ_LOG MINUS LT LE GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## term
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE VEE WHILE
+##
+## Ends in an error in state: 37.
+##
+## formula -> formula VEE . formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## formula VEE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE VEE FALSE WHILE
+##
+## Ends in an error in state: 38.
+##
+## formula -> formula . IFF formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula VEE formula . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## formula VEE formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE IMP WHILE
+##
+## Ends in an error in state: 40.
+##
+## formula -> formula IMP . formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## formula IMP
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE IMP FALSE WHILE
+##
+## Ends in an error in state: 41.
+##
+## formula -> formula . IFF formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula IMP formula . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## formula IMP formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE IFF WHILE
+##
+## Ends in an error in state: 42.
+##
+## formula -> formula IFF . formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## formula IFF
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE IFF FALSE WHILE
+##
+## Ends in an error in state: 43.
+##
+## formula -> formula . IFF formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula IFF formula . [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RPAREN RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## formula IFF formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RPAREN
+##
+## Ends in an error in state: 45.
+##
+## formula -> formula . IFF formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RBRACE IMP IFF ]
+## program -> PRE LBRACE formula . RBRACE cmd POST LBRACE formula RBRACE EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE LBRACE formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WEDGE
+##
+## Ends in an error in state: 46.
+##
+## program -> PRE LBRACE formula RBRACE . cmd POST LBRACE formula RBRACE EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE LBRACE formula RBRACE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE WHILE
+##
+## Ends in an error in state: 47.
+##
+## cmd_node -> WHILE . bexpr INVARIANT LBRACE formula RBRACE DO cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## WHILE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE NOT WHILE
+##
+## Ends in an error in state: 49.
+##
+## bexpr -> NOT . bexpr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## NOT
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE MINUS WHILE
+##
+## Ends in an error in state: 50.
+##
+## expr -> MINUS . expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+##
+## The known suffix of the stack is as follows:
+## MINUS
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IDENT ASSIGN LPAREN WHILE
+##
+## Ends in an error in state: 51.
+##
+## expr -> LPAREN . expr RPAREN [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IDENT ASSIGN LPAREN IDENT WHILE
+##
+## Ends in an error in state: 54.
+##
+## expr -> expr . PLUS expr [ STAR RPAREN PLUS MINUS ]
+## expr -> expr . MINUS expr [ STAR RPAREN PLUS MINUS ]
+## expr -> expr . STAR expr [ STAR RPAREN PLUS MINUS ]
+## expr -> LPAREN expr . RPAREN [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT STAR WHILE
+##
+## Ends in an error in state: 55.
+##
+## expr -> expr STAR . expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+##
+## The known suffix of the stack is as follows:
+## expr STAR
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT PLUS WHILE
+##
+## Ends in an error in state: 58.
+##
+## expr -> expr PLUS . expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+##
+## The known suffix of the stack is as follows:
+## expr PLUS
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT PLUS IDENT WHILE
+##
+## Ends in an error in state: 59.
+##
+## expr -> expr . PLUS expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+## expr -> expr PLUS expr . [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+## expr -> expr . MINUS expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+## expr -> expr . STAR expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+##
+## The known suffix of the stack is as follows:
+## expr PLUS expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT MINUS WHILE
+##
+## Ends in an error in state: 60.
+##
+## expr -> expr MINUS . expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+##
+## The known suffix of the stack is as follows:
+## expr MINUS
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT MINUS IDENT WHILE
+##
+## Ends in an error in state: 61.
+##
+## expr -> expr . PLUS expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+## expr -> expr . MINUS expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+## expr -> expr MINUS expr . [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+## expr -> expr . STAR expr [ THEN STAR SEMI RPAREN POST PLUS OR NEQ_PROG MINUS LT LE INVARIANT GT GE EQ END ELSE AND ]
+##
+## The known suffix of the stack is as follows:
+## expr MINUS expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE LPAREN WHILE
+##
+## Ends in an error in state: 63.
+##
+## bexpr -> LPAREN . bexpr RPAREN [ THEN RPAREN OR INVARIANT AND ]
+## expr -> LPAREN . expr RPAREN [ STAR RPAREN PLUS NEQ_PROG MINUS LT LE GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE LPAREN IDENT WHILE
+##
+## Ends in an error in state: 65.
+##
+## bexpr -> expr . EQ expr [ RPAREN OR AND ]
+## bexpr -> expr . NEQ_PROG expr [ RPAREN OR AND ]
+## bexpr -> expr . LT expr [ RPAREN OR AND ]
+## bexpr -> expr . LE expr [ RPAREN OR AND ]
+## bexpr -> expr . GT expr [ RPAREN OR AND ]
+## bexpr -> expr . GE expr [ RPAREN OR AND ]
+## expr -> expr . PLUS expr [ STAR RPAREN PLUS NEQ_PROG MINUS LT LE GT GE EQ ]
+## expr -> expr . MINUS expr [ STAR RPAREN PLUS NEQ_PROG MINUS LT LE GT GE EQ ]
+## expr -> expr . STAR expr [ STAR RPAREN PLUS NEQ_PROG MINUS LT LE GT GE EQ ]
+## expr -> LPAREN expr . RPAREN [ STAR RPAREN PLUS NEQ_PROG MINUS LT LE GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT NEQ_PROG WHILE
+##
+## Ends in an error in state: 66.
+##
+## bexpr -> expr NEQ_PROG . expr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr NEQ_PROG
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT NEQ_PROG IDENT WHILE
+##
+## Ends in an error in state: 67.
+##
+## bexpr -> expr NEQ_PROG expr . [ THEN RPAREN OR INVARIANT AND ]
+## expr -> expr . PLUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . MINUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . STAR expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr NEQ_PROG expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT LT WHILE
+##
+## Ends in an error in state: 68.
+##
+## bexpr -> expr LT . expr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr LT
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT LT IDENT WHILE
+##
+## Ends in an error in state: 69.
+##
+## bexpr -> expr LT expr . [ THEN RPAREN OR INVARIANT AND ]
+## expr -> expr . PLUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . MINUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . STAR expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr LT expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT LE WHILE
+##
+## Ends in an error in state: 70.
+##
+## bexpr -> expr LE . expr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr LE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT LE IDENT WHILE
+##
+## Ends in an error in state: 71.
+##
+## bexpr -> expr LE expr . [ THEN RPAREN OR INVARIANT AND ]
+## expr -> expr . PLUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . MINUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . STAR expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr LE expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT GT WHILE
+##
+## Ends in an error in state: 72.
+##
+## bexpr -> expr GT . expr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr GT
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT GT IDENT WHILE
+##
+## Ends in an error in state: 73.
+##
+## bexpr -> expr GT expr . [ THEN RPAREN OR INVARIANT AND ]
+## expr -> expr . PLUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . MINUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . STAR expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr GT expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT GE WHILE
+##
+## Ends in an error in state: 74.
+##
+## bexpr -> expr GE . expr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr GE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT GE IDENT WHILE
+##
+## Ends in an error in state: 75.
+##
+## bexpr -> expr GE expr . [ THEN RPAREN OR INVARIANT AND ]
+## expr -> expr . PLUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . MINUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . STAR expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr GE expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT EQ WHILE
+##
+## Ends in an error in state: 76.
+##
+## bexpr -> expr EQ . expr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr EQ
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT EQ IDENT WHILE
+##
+## Ends in an error in state: 77.
+##
+## bexpr -> expr EQ expr . [ THEN RPAREN OR INVARIANT AND ]
+## expr -> expr . PLUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . MINUS expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+## expr -> expr . STAR expr [ THEN STAR RPAREN PLUS OR MINUS INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## expr EQ expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE LPAREN FALSE WHILE
+##
+## Ends in an error in state: 78.
+##
+## bexpr -> bexpr . OR bexpr [ RPAREN OR AND ]
+## bexpr -> bexpr . AND bexpr [ RPAREN OR AND ]
+## bexpr -> LPAREN bexpr . RPAREN [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## LPAREN bexpr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF FALSE OR WHILE
+##
+## Ends in an error in state: 80.
+##
+## bexpr -> bexpr OR . bexpr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## bexpr OR
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE IDENT WHILE
+##
+## Ends in an error in state: 81.
+##
+## bexpr -> expr . EQ expr [ THEN RPAREN OR INVARIANT AND ]
+## bexpr -> expr . NEQ_PROG expr [ THEN RPAREN OR INVARIANT AND ]
+## bexpr -> expr . LT expr [ THEN RPAREN OR INVARIANT AND ]
+## bexpr -> expr . LE expr [ THEN RPAREN OR INVARIANT AND ]
+## bexpr -> expr . GT expr [ THEN RPAREN OR INVARIANT AND ]
+## bexpr -> expr . GE expr [ THEN RPAREN OR INVARIANT AND ]
+## expr -> expr . PLUS expr [ STAR PLUS NEQ_PROG MINUS LT LE GT GE EQ ]
+## expr -> expr . MINUS expr [ STAR PLUS NEQ_PROG MINUS LT LE GT GE EQ ]
+## expr -> expr . STAR expr [ STAR PLUS NEQ_PROG MINUS LT LE GT GE EQ ]
+##
+## The known suffix of the stack is as follows:
+## expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF FALSE OR FALSE WHILE
+##
+## Ends in an error in state: 82.
+##
+## bexpr -> bexpr . OR bexpr [ THEN RPAREN OR INVARIANT AND ]
+## bexpr -> bexpr OR bexpr . [ THEN RPAREN OR INVARIANT AND ]
+## bexpr -> bexpr . AND bexpr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## bexpr OR bexpr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF FALSE AND WHILE
+##
+## Ends in an error in state: 83.
+##
+## bexpr -> bexpr AND . bexpr [ THEN RPAREN OR INVARIANT AND ]
+##
+## The known suffix of the stack is as follows:
+## bexpr AND
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE FALSE WHILE
+##
+## Ends in an error in state: 86.
+##
+## bexpr -> bexpr . OR bexpr [ OR INVARIANT AND ]
+## bexpr -> bexpr . AND bexpr [ OR INVARIANT AND ]
+## cmd_node -> WHILE bexpr . INVARIANT LBRACE formula RBRACE DO cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## WHILE bexpr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT WHILE
+##
+## Ends in an error in state: 87.
+##
+## cmd_node -> WHILE bexpr INVARIANT . LBRACE formula RBRACE DO cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## WHILE bexpr INVARIANT
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE WHILE
+##
+## Ends in an error in state: 88.
+##
+## cmd_node -> WHILE bexpr INVARIANT LBRACE . formula RBRACE DO cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## WHILE bexpr INVARIANT LBRACE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RPAREN
+##
+## Ends in an error in state: 89.
+##
+## cmd_node -> WHILE bexpr INVARIANT LBRACE formula . RBRACE DO cmd END [ SEMI POST END ELSE ]
+## formula -> formula . IFF formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## WHILE bexpr INVARIANT LBRACE formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE WHILE
+##
+## Ends in an error in state: 90.
+##
+## cmd_node -> WHILE bexpr INVARIANT LBRACE formula RBRACE . DO cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## WHILE bexpr INVARIANT LBRACE formula RBRACE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE DO WEDGE
+##
+## Ends in an error in state: 91.
+##
+## cmd_node -> WHILE bexpr INVARIANT LBRACE formula RBRACE DO . cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## WHILE bexpr INVARIANT LBRACE formula RBRACE DO
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF WHILE
+##
+## Ends in an error in state: 93.
+##
+## cmd_node -> IF . bexpr THEN cmd ELSE cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IF
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF FALSE WHILE
+##
+## Ends in an error in state: 94.
+##
+## bexpr -> bexpr . OR bexpr [ THEN OR AND ]
+## bexpr -> bexpr . AND bexpr [ THEN OR AND ]
+## cmd_node -> IF bexpr . THEN cmd ELSE cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IF bexpr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF FALSE THEN WEDGE
+##
+## Ends in an error in state: 95.
+##
+## cmd_node -> IF bexpr THEN . cmd ELSE cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IF bexpr THEN
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IDENT WHILE
+##
+## Ends in an error in state: 96.
+##
+## cmd_node -> IDENT . ASSIGN expr [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IDENT
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IDENT ASSIGN WHILE
+##
+## Ends in an error in state: 97.
+##
+## cmd_node -> IDENT ASSIGN . expr [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IDENT ASSIGN
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IDENT ASSIGN IDENT WHILE
+##
+## Ends in an error in state: 98.
+##
+## cmd_node -> IDENT ASSIGN expr . [ SEMI POST END ELSE ]
+## expr -> expr . PLUS expr [ STAR SEMI POST PLUS MINUS END ELSE ]
+## expr -> expr . MINUS expr [ STAR SEMI POST PLUS MINUS END ELSE ]
+## expr -> expr . STAR expr [ STAR SEMI POST PLUS MINUS END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IDENT ASSIGN expr
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE ASSUME WHILE
+##
+## Ends in an error in state: 99.
+##
+## cmd_node -> ASSUME . LBRACE formula RBRACE [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## ASSUME
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE ASSUME LBRACE WHILE
+##
+## Ends in an error in state: 100.
+##
+## cmd_node -> ASSUME LBRACE . formula RBRACE [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## ASSUME LBRACE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE ASSUME LBRACE FALSE RPAREN
+##
+## Ends in an error in state: 101.
+##
+## cmd_node -> ASSUME LBRACE formula . RBRACE [ SEMI POST END ELSE ]
+## formula -> formula . IFF formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## ASSUME LBRACE formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE ASSERT WHILE
+##
+## Ends in an error in state: 103.
+##
+## cmd_node -> ASSERT . LBRACE formula RBRACE [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## ASSERT
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE ASSERT LBRACE WHILE
+##
+## Ends in an error in state: 104.
+##
+## cmd_node -> ASSERT LBRACE . formula RBRACE [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## ASSERT LBRACE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE ASSERT LBRACE FALSE RPAREN
+##
+## Ends in an error in state: 105.
+##
+## cmd_node -> ASSERT LBRACE formula . RBRACE [ SEMI POST END ELSE ]
+## formula -> formula . IFF formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RBRACE IMP IFF ]
+##
+## The known suffix of the stack is as follows:
+## ASSERT LBRACE formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP POST
+##
+## Ends in an error in state: 108.
+##
+## cmd -> cmd . SEMI cmd [ SEMI ELSE ]
+## cmd_node -> IF bexpr THEN cmd . ELSE cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IF bexpr THEN cmd
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE SKIP SEMI WEDGE
+##
+## Ends in an error in state: 109.
+##
+## cmd -> cmd SEMI . cmd [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## cmd SEMI
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE SKIP SEMI SKIP WHILE
+##
+## Ends in an error in state: 110.
+##
+## cmd -> cmd . SEMI cmd [ SEMI POST END ELSE ]
+## cmd -> cmd SEMI cmd . [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## cmd SEMI cmd
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP ELSE WEDGE
+##
+## Ends in an error in state: 111.
+##
+## cmd_node -> IF bexpr THEN cmd ELSE . cmd END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IF bexpr THEN cmd ELSE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE IF FALSE THEN SKIP ELSE SKIP POST
+##
+## Ends in an error in state: 112.
+##
+## cmd -> cmd . SEMI cmd [ SEMI END ]
+## cmd_node -> IF bexpr THEN cmd ELSE cmd . END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## IF bexpr THEN cmd ELSE cmd
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE WHILE FALSE INVARIANT LBRACE FALSE RBRACE DO SKIP POST
+##
+## Ends in an error in state: 114.
+##
+## cmd -> cmd . SEMI cmd [ SEMI END ]
+## cmd_node -> WHILE bexpr INVARIANT LBRACE formula RBRACE DO cmd . END [ SEMI POST END ELSE ]
+##
+## The known suffix of the stack is as follows:
+## WHILE bexpr INVARIANT LBRACE formula RBRACE DO cmd
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE SKIP END
+##
+## Ends in an error in state: 116.
+##
+## cmd -> cmd . SEMI cmd [ SEMI POST ]
+## program -> PRE LBRACE formula RBRACE cmd . POST LBRACE formula RBRACE EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE LBRACE formula RBRACE cmd
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE SKIP POST WHILE
+##
+## Ends in an error in state: 117.
+##
+## program -> PRE LBRACE formula RBRACE cmd POST . LBRACE formula RBRACE EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE LBRACE formula RBRACE cmd POST
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE WHILE
+##
+## Ends in an error in state: 118.
+##
+## program -> PRE LBRACE formula RBRACE cmd POST LBRACE . formula RBRACE EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE LBRACE formula RBRACE cmd POST LBRACE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE FALSE RPAREN
+##
+## Ends in an error in state: 119.
+##
+## formula -> formula . IFF formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . IMP formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . VEE formula [ WEDGE VEE RBRACE IMP IFF ]
+## formula -> formula . WEDGE formula [ WEDGE VEE RBRACE IMP IFF ]
+## program -> PRE LBRACE formula RBRACE cmd POST LBRACE formula . RBRACE EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE LBRACE formula RBRACE cmd POST LBRACE formula
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+program: PRE LBRACE FALSE RBRACE SKIP POST LBRACE FALSE RBRACE WHILE
+##
+## Ends in an error in state: 120.
+##
+## program -> PRE LBRACE formula RBRACE cmd POST LBRACE formula RBRACE . EOF [ # ]
+##
+## The known suffix of the stack is as follows:
+## PRE LBRACE formula RBRACE cmd POST LBRACE formula RBRACE
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
